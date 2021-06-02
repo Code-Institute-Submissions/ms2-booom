@@ -36,7 +36,8 @@ Search for mines using neighbouring fields as indicators where the mines are, fi
 # User Experience (UX)
 
 ## Strategy
-
+Provide online application so the user can play their favorite game!
+Minesweeper BOOOM! application follows the principal "simplicity is the key" and thus provide it's users with intuitive navigation methods, both throughout the website and gameplay.
 ## User Stories
 
 ## Scope
