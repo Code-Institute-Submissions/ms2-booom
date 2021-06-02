@@ -45,7 +45,15 @@ Minesweeper BOOOM! application follows the principal "simplicity is the key" and
 ## Structure
 
 ## Skeleton
-
+- ### [Landing Page](assets/doc/wireframes/landing-page.png)
+    <img src="./assets/doc/wireframes/landing-page.png" width="1000">
+- ### Wireframes
+    - [Tutorial](assets/doc/wireframes/tutorial.png)
+    - [Settings](assets/doc/wireframes/settings.png)
+    - [Leaderboard](assets/doc/wireframes/leaderboard.png)
+    - [Get in Touch](assets/doc/wireframes/get-in-touch.png)
+    - [Win](assets/doc/wireframes/win.png)
+    - [Lose](assets/doc/wireframes/lose.png)
 # Design
 
 ## Imagery
