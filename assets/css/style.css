@@ -6,6 +6,12 @@
 body {
     background-color: var(--test-light);
 }
+.light {
+    background-color: var(--test-light);
+}
+.dark {
+    background-color: var(--test-dark);
+}
 /*
 .hidden {
     display: none;
