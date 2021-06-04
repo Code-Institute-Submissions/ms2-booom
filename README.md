@@ -44,7 +44,7 @@ Minesweeper BOOOM! application follows the principal "simplicity is the key" and
     - I want an app that is uploading quickly, so I won't get annoyed.
     - I want to go through tutorial so I can learn how to play the game.
     - I want to adjust the game settings according to my preferences.
-    - I want to be able to mute the game, but to have sound option as well.
+    - I want to be able to mute the game, but to have the sound option as well.
     - I want to be able to restart the game whenever I want to.
     - I want to be able to see end result of my finished game.
     - I want to be able to get in touch with creators of the game, in case I have any queries.
@@ -56,7 +56,7 @@ Minesweeper BOOOM! application follows the principal "simplicity is the key" and
     - I want to be able to place the flag.
     - I want to see result of clicking/placing flag on the field.
     - I want to see mines that I didn't succeed to find when losing the game.
-    - I want to see the score that I earned, either from win or a lose.
+    - I want to see the score that I earned, either from a win or a lose.
 - ### Returning Player
     - I want to see my ranking/statistics, so that I can see my progress.
     - I want to select different difficulty level, so I can test my abilities.
@@ -69,7 +69,7 @@ Minesweeper BOOOM! application follows the principal "simplicity is the key" and
 
 ## Skeleton
 - ### [Landing Page](assets/doc/wireframes/landing-page.png)
-    <img src="./assets/doc/wireframes/landing-page.png" width="1000">
+    ![Landing page](assets/doc/wireframes/landing-page.png)
 - ### Wireframes
     - [Tutorial](assets/doc/wireframes/tutorial.png)
     - [Settings](assets/doc/wireframes/settings.png)
