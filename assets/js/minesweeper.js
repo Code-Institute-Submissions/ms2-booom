@@ -1,6 +1,6 @@
 const board = document.querySelector('.board');
 let width = 10;
-let bombCount = 10;
+let bombCount = 20;
 let squares = [];
 
 // Add 'bombs' and 'empty fields' to Array amd shuffle it's value
@@ -14,10 +14,41 @@ function shuffleSquares() {
     return boardArray;
 }
 
+// Calculate how many bombs empty fields are "touching", implement logic for borderline cases"
+function numOfBombsSurroundingEmpty() {
+    for (let i = 0; i < squares.length; i++) {
+        const leftBorder = (i % width === 0);
+        const rightBorder = (i % width === width -1);
+        let total = 0;
+    
+        if (squares[i].classList.contains('empty')) {
+            if (i > 0 && !leftBorder && squares[i - 1].classList.contains('bomb')) 
+                total++;
+            if (i > (width - 1) && !rightBorder && squares[i + 1 - width].classList.contains('bomb')) 
+                total++;
+            if (i > (width - 1) && squares[i - width].classList.contains('bomb'))
+                total++;
+            if (i > width && !leftBorder && squares[i - 1 - width].classList.contains('bomb'))
+                total++;
+            if (i < (width * width - 1) && !rightBorder && squares[i + 1].classList.contains('bomb'))
+                total++;
+            if (i < (width * width - width) && !leftBorder && squares[i -1 + width].classList.contains('bomb'))
+                total++;
+            if (i < (width * width - width - 1) && !rightBorder && squares[i + 1 + width].classList.contains('bomb'))
+                total++;
+            if (i < (width * width - width) && squares[i + width].classList.contains('bomb'))
+                total++;
+    
+            squares[i].setAttribute('data', total);
+            console.log(squares[i]); // ------------------------------------------------- CONSOLE LOG
+        }
+    }
+}
+
 // Create board filled with width*width squares
 function createBoard() {
     const shuffledSquares = shuffleSquares();
-    console.log(shuffledSquares);
+    console.log(shuffledSquares); // ----------------------------------CONSOLE LOG
 
     for(let i = 0; i < width*width; i++) {
         const square = document.createElement('div');
@@ -27,7 +58,10 @@ function createBoard() {
         squares.push(square);
     }
     
+    numOfBombsSurroundingEmpty();
 }
+
+
 
 createBoard();
 
