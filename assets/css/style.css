@@ -18,7 +18,13 @@ body {
 }*/
 /*------------------------------------------- Minesweeper ---*/
 .board {
-    display: inline-grid;
-    grid-template-columns: repeat(var(--size), 50px);
-    grid-template-rows: repeat(var(--size), 50px);
+    display: flex;
+    flex-wrap: wrap;
+    height: 500px;
+    width: 500px;
+}
+
+.board div {
+    height: 50px;
+    width: 50px;
 }
