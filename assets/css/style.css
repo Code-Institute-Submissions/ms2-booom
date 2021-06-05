@@ -33,3 +33,7 @@ body {
 .bomb {
     background-color: salmon;
 }
+
+.revealed-square {
+    background-color: seagreen;
+}
