@@ -1,12 +1,13 @@
 const board = document.querySelector('.board');
-let width = 10;
+let width = 15;
+let height = 10;
 let bombCount = 20;
 let squares = [];
 
 // Add 'bombs' and 'empty fields' to Array amd shuffle it's value
 function shuffleSquares() {
     const bombArray = Array(bombCount).fill('bomb');
-    const emptyArray = Array(width * width - bombCount).fill('empty');
+    const emptyArray = Array(width * height - bombCount).fill('empty');
     let boardArray = emptyArray.concat(bombArray);
     
     boardArray = boardArray.sort(() => Math.random() -0.5);
@@ -30,13 +31,13 @@ function numOfBombsSurroundingEmpty() {
                 total++;
             if (i > width && !leftBorder && squares[i - 1 - width].classList.contains('bomb'))
                 total++;
-            if (i < (width * width - 1) && !rightBorder && squares[i + 1].classList.contains('bomb'))
+            if (i < (width * height - 1) && !rightBorder && squares[i + 1].classList.contains('bomb'))
                 total++;
-            if (i < (width * width - width) && !leftBorder && squares[i -1 + width].classList.contains('bomb'))
+            if (i < (width * height - width) && !leftBorder && squares[i -1 + width].classList.contains('bomb'))
                 total++;
-            if (i < (width * width - width - 1) && !rightBorder && squares[i + 1 + width].classList.contains('bomb'))
+            if (i < (width * height - width - 1) && !rightBorder && squares[i + 1 + width].classList.contains('bomb'))
                 total++;
-            if (i < (width * width - width) && squares[i + width].classList.contains('bomb'))
+            if (i < (width * height - width) && squares[i + width].classList.contains('bomb'))
                 total++;
     
             squares[i].setAttribute('data', total);
@@ -50,7 +51,7 @@ function createBoard() {
     const shuffledSquares = shuffleSquares();
     console.log(shuffledSquares); // ----------------------------------CONSOLE LOG
 
-    for(let i = 0; i < width*width; i++) {
+    for(let i = 0; i < width * height ; i++) {
         const square = document.createElement('div');
         square.setAttribute('id', i);
         square.classList.add(shuffledSquares[i]);
