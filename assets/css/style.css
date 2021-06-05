@@ -27,6 +27,9 @@ body {
 .board div {
     height: 50px;
     width: 50px;
-    background-color: var(--test-light);
-    border: 2px solid rgb(112, 14, 60);
+    border: 2px solid var(--test-light);
+}
+
+.bomb {
+    background-color: salmon;
 }
