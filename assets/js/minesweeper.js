@@ -56,13 +56,23 @@ function createBoard() {
         square.classList.add(shuffledSquares[i]);
         board.appendChild(square);
         squares.push(square);
+
+        // Add Event Listener for every board element
+        square.addEventListener('click', function(e) {
+            click(square);
+        })
     }
     
     numOfBombsSurroundingEmpty();
 }
 
-
-
 createBoard();
+
+// Game over click case
+function click(square) {
+    if (square.classList.contains('bomb')) {
+        alert('Game Over!');
+    }
+}
 
 
