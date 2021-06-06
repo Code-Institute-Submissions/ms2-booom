@@ -15,6 +15,7 @@ let squares = [];
 /* -------------------------- Main -------------------------- */
 function bodyLoaded(){
     createBoard();
+    start_timer();
 }
 
 /* -------------------------- Functions -------------------------- */
@@ -265,4 +266,32 @@ function startAgain() {
 
     $("#board").empty();
     createBoard();
+}
+
+/* -------------------------- Timer -------------------------- */
+// Function that counts passed time from start game 
+function start_timer() {
+    let timer = document.getElementById('timer').innerHTML;
+    let separateTime = timer.split(":");
+    let min = separateTime[0];
+    let sec = separateTime[1];
+
+    if(sec == 59) {
+        min++;
+        sec = 0;
+
+        if(sec == 0) 
+            sec = "0" + sec;
+        if(min < 10) 
+            min = "0" + min;
+    } else {
+        sec++;
+
+        if(sec < 10) 
+            sec = "0" + sec;
+    }
+
+    document.getElementById("timer").innerHTML = min + ":" + sec;
+    setTimeout(start_timer, 1000);
+    
 }
