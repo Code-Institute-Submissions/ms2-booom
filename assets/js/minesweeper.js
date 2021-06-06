@@ -8,23 +8,6 @@ let gameOver = false;
 
 createBoard();
 
-// Add flags
-function flags() {
-    if (gameOver) 
-        return;
-    if (!square.classList.contains('revealed') && (flags < bombCount)) {
-        if (!square.classList.contains('flag')) {
-            square.classList.add('flag');
-            square.innerHTML = 'flag';
-            flags ++;
-        } else {
-            square.classList.remove('flag');
-            square.innerHTML = '';
-            flags --;
-        }
-    }
-}
-
 // Create board filled with width*width squares
 function createBoard() {
     const shuffledSquares = shuffleSquares();
@@ -37,9 +20,17 @@ function createBoard() {
         squares.push(square);
 
         // Add Event Listener for every board element
+        // Left click
         square.addEventListener('click', function(e) {
             click(square);
         })
+
+        // Invoke addFlags function
+        // Right click
+        square.oncontextmenu = function(e) {
+            e.preventDefault();
+            addFlags(square);
+        }
     }
     
     numOfBombsSurroundingEmpty();
@@ -86,6 +77,25 @@ function numOfBombsSurroundingEmpty() {
     }
 }
 
+// Add flags
+function addFlags(square) {
+    if (gameOver) 
+        return;
+    if (!square.classList.contains('revealed-square') && (flags < bombCount)) {
+        if (!square.classList.contains('flag')) {
+            square.classList.add('flag');
+            square.innerHTML = 'flag';
+            flags ++;
+
+            isVictory();
+        } else {
+            square.classList.remove('flag');
+            square.innerHTML = '';
+            flags --;
+        }
+    }
+}
+
 // Click function 
 function click(square) {
     if (gameOver) 
@@ -94,7 +104,7 @@ function click(square) {
         return;
 
     if (square.classList.contains('bomb')) {
-        gameIsOver();
+        isDefeat();
     } else {
         let total = square.getAttribute('data');
 
@@ -168,8 +178,23 @@ function revealSquare(square) {
     }, 50);
 }
 
+// Check for Victory
+function isVictory() {
+    let bombFlag = 0;
+
+    for (let i = 0; i < squares.length; i++) {
+        if (squares[i].classList.contains('flag') && squares[i].classList.contains('bomb')) {
+            bombFlag ++;
+        }
+        if (bombFlag === bombCount) {
+            console.log('VICTORY'); //----------------------------------------------------------------------console log
+            gameOver = true;
+        }
+    }
+}
+
 // Displays Game Over
-function gameIsOver() {
+function isDefeat() {
     console.log('BOOOM! Game Over!');
     gameOver = true;
 
@@ -184,3 +209,4 @@ function displayBombs() {
         }
     })
 }
+
