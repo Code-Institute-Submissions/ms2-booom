@@ -17,17 +17,12 @@ function bodyLoaded(){
     createBoard();
 }
 
-
 /* -------------------------- Functions -------------------------- */
+/***** BOARD *****/
 // Create board filled with squares
 function createBoard() {
     const shuffledSquares = shuffleSquares();
-
-    board.style.width = width * 50 + "px";
-    board.style.height = height * 50 + "px";
-    board.style.display = "grid";
-    board.style.gridTemplateColumns = "repeat("+ width +", 50px)";
-    board.style.gridTemplateRows = "repeat("+ height +", 50px)";
+    addBoardGrid();
 
     // iterate throughout the board, create div's for squares
     for(let i = 0; i < widthTimesHeight ; i++) {        
@@ -46,17 +41,28 @@ function createBoard() {
         // invoke right click event
         square.oncontextmenu = function(e) {
             e.preventDefault();
-            addFlags(square);
+            addFlagsToSquare(square);
         }
     }
     // invoke function that adds total of how many bombs empty field is touching
     numOfBombsSurroundingEmpty();
 }
 
+// Add dynamic board grid
+function addBoardGrid() {
+    board.style.width = width * 50 + "px";
+    board.style.height = height * 50 + "px";
+
+    board.style.display = "grid";
+    board.style.gridTemplateColumns = "repeat("+ width +", 50px)";
+    board.style.gridTemplateRows = "repeat("+ height +", 50px)";
+}
+
+/***** GAME LOGIC *****/
 // Add 'bombs' and 'empty fields' to Array amd shuffle it's values
 function shuffleSquares() {
     const bombArray = Array(bombCount).fill('bomb');
-    const emptyArray = Array(width * height - bombCount).fill('empty');
+    const emptyArray = Array(widthTimesHeight - bombCount).fill('empty');
     let boardArray = emptyArray.concat(bombArray);
     
     boardArray = boardArray.sort(() => Math.random() -0.5);
@@ -95,30 +101,64 @@ function numOfBombsSurroundingEmpty() {
     }
 }
 
-// Add flags
-function addFlags(square) {
-    if (gameOver) 
-        return;
-    
-    // only add flags to non revealed squares
-    if (!square.classList.contains('revealed-square') && (flags < bombCount)) {
-        // add flag
-        if (!square.classList.contains('flag')) {
-            square.classList.add('flag');
-            square.innerHTML = '<i class="fab fa-font-awesome-flag"></i>';
-            flags ++;
+// Reveal squares with data value '0', using recursion
+function revealSquare(square) {
+    let currentId = square.id;
+    // border values
+    const leftBorder = (currentId % width === 0);
+    const rightBorder = (currentId % width === width - 1);
 
-            //every time flag is added, check for victory
-            isVictory();
-        // remove flag
-        } else {
-            square.classList.remove('flag');
-            square.innerHTML = '';
-            flags --;
+    setTimeout(() => {
+        // north direction
+        if (currentId > (width - 1)) {
+            const newId = parseInt(currentId) - width;
+            newSquare(newId);
         }
-    }
+        // east direction
+        if (currentId < (widthTimesHeight - 1) && !rightBorder) {
+            const newId = parseInt(currentId) + 1;
+            newSquare(newId);
+        }
+        // south direction
+        if (currentId < (widthTimesHeight - width)) {
+            const newId = parseInt(currentId) + width;
+            newSquare(newId);
+        }
+        // west direction
+        if (currentId > 0 && !leftBorder) {
+            const newId = parseInt(currentId) -1;
+            newSquare(newId);
+        }
+        // north-east direction
+        if (currentId < (widthTimesHeight - width - 1) && !rightBorder) {
+            const newId = parseInt(currentId) + 1 + width;
+            newSquare(newId);
+        } 
+        // south-east direction
+        if (currentId > (width - 1) && !rightBorder) {
+            const newId = parseInt(currentId) + 1 - width;
+            newSquare(newId);
+        }
+        // north-west direction
+        if (currentId < (widthTimesHeight - width) && !leftBorder) {
+            const newId = parseInt(currentId) - 1 + width;
+            newSquare(newId);
+        }
+        // south-west direction
+        if (currentId > width && !leftBorder) {
+            const newId = parseInt(currentId) - 1 - width;
+            newSquare(newId);
+        }
+    }, 50);
 }
 
+// Add new ID to new Square
+function newSquare(newId) {
+    const newSquare = document.getElementById(newId);
+    click(newSquare);
+}
+
+/***** CLICK SQUARES OPTION *****/
 // Left click function
 function click(square) {
     // removes left click optionality if the game is over
@@ -146,70 +186,47 @@ function click(square) {
     }
 }
 
-// Reveal squares with data value '0', using recursion
-function revealSquare(square) {
-    let currentId = square.id;
-    // border values
-    const leftBorder = (currentId % width === 0);
-    const rightBorder = (currentId % width === width - 1);
-
-    setTimeout(() => {
-        // north direction
-        if (currentId > (width - 1)) {
-            const newId = parseInt(currentId) - width;
-            const newSquare = document.getElementById(newId);
-            click(newSquare);
+/***** FLAGS *****/
+// Add flags to squares
+function addFlagsToSquare(square) {
+    if (gameOver) 
+        return;
+    
+    // only add flags to non revealed squares
+    if (!square.classList.contains('revealed-square') && (flags < bombCount)) {
+        // add flag
+        if (!square.classList.contains('flag')) {
+            addFlag(square);
+            //every time flag is added, check for victory
+            isVictory();
+        // remove flag
+        } else {
+            removeFlag(square);
         }
-        // east direction
-        if (currentId < (widthTimesHeight - 1) && !rightBorder) {
-            const newId = parseInt(currentId) + 1;
-            const newSquare = document.getElementById(newId);
-            click(newSquare);
-        }
-        // south direction
-        if (currentId < (widthTimesHeight - width)) {
-            const newId = parseInt(currentId) + width;
-            const newSquare = document.getElementById(newId);
-            click(newSquare);
-        }
-        // west direction
-        if (currentId > 0 && !leftBorder) {
-            const newId = parseInt(currentId) -1;
-            const newSquare = document.getElementById(newId);
-            click(newSquare);
-        }
-        // north-east direction
-        if (currentId < (widthTimesHeight - width - 1) && !rightBorder) {
-            const newId = parseInt(currentId) + 1 + width;
-            const newSquare = document.getElementById(newId);
-            click(newSquare);
-        } 
-        // south-east direction
-        if (currentId > (width - 1) && !rightBorder) {
-            const newId = parseInt(currentId) + 1 - width;
-            const newSquare = document.getElementById(newId);
-            click(newSquare);
-        }
-        // north-west direction
-        if (currentId < (widthTimesHeight - width) && !leftBorder) {
-            const newId = parseInt(currentId) - 1 + width;
-            const newSquare = document.getElementById(newId);
-            click(newSquare);
-        }
-        // south-west direction
-        if (currentId > width && !leftBorder) {
-            const newId = parseInt(currentId) - 1 - width;
-            const newSquare = document.getElementById(newId);
-            click(newSquare);
-        }
-    }, 50);
+    }
 }
 
+// Add Flag function
+function addFlag(square) {
+    square.classList.add('flag');
+    square.innerHTML = '<i class="fab fa-font-awesome-flag"></i>';
+    flags ++;
+}
+
+// Remove Flag function
+function removeFlag(square) {
+    square.classList.remove('flag');
+    square.innerHTML = '';
+    flags --;
+}
+
+/***** END GAME *****/
 // Check for Victory
 function isVictory() {
     let bombFlag = 0;
 
     for (let i = 0; i < squares.length; i++) {
+        const square = squares[i];
         // check if flag and bomb position is matched
         if (squares[i].classList.contains('flag') && squares[i].classList.contains('bomb')) {
             bombFlag ++;
