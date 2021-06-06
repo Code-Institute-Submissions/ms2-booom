@@ -1,3 +1,4 @@
+/* -------------------------- Variables -------------------------- */
 const board = document.querySelector('.board');
 let width = 15;
 let height = 10;
@@ -6,37 +7,39 @@ let flags = 0;
 let squares = [];
 let gameOver = false;
 
+/* -------------------------- Main -------------------------- */
 createBoard();
 
-// Create board filled with width*width squares
+/* -------------------------- Functions -------------------------- */
+// Create board filled with squares
 function createBoard() {
     const shuffledSquares = shuffleSquares();
 
+    // iterate throughout the board, create div's for squares
     for(let i = 0; i < width * height ; i++) {
         const square = document.createElement('div');
         square.setAttribute('id', i);
+        // assign shuffled values to squares
         square.classList.add(shuffledSquares[i]);
         board.appendChild(square);
         squares.push(square);
 
-        // Add Event Listener for every board element
-        // Left click
+        // invoke left click event
         square.addEventListener('click', function(e) {
             click(square);
         })
 
-        // Invoke addFlags function
-        // Right click
+        // invoke right click event
         square.oncontextmenu = function(e) {
             e.preventDefault();
             addFlags(square);
         }
     }
-    
+    // invoke function that adds total of how many bombs empty field is touching
     numOfBombsSurroundingEmpty();
 }
 
-// Add 'bombs' and 'empty fields' to Array amd shuffle it's value
+// Add 'bombs' and 'empty fields' to Array amd shuffle it's values
 function shuffleSquares() {
     const bombArray = Array(bombCount).fill('bomb');
     const emptyArray = Array(width * height - bombCount).fill('empty');
@@ -47,7 +50,7 @@ function shuffleSquares() {
     return boardArray;
 }
 
-// Calculate how many bombs empty fields are "touching", implement logic for borderline cases"
+// Calculate how many bombs empty fields are "touching", implement logic for borderline cases
 function numOfBombsSurroundingEmpty() {
     for (let i = 0; i < squares.length; i++) {
         const leftBorder = (i % width === 0);
@@ -71,7 +74,8 @@ function numOfBombsSurroundingEmpty() {
                 total++;
             if (i < (width * height - width) && squares[i + width].classList.contains('bomb'))
                 total++;
-    
+            
+            // add calculation to empty squares
             squares[i].setAttribute('data', total);
         }
     }
@@ -81,13 +85,18 @@ function numOfBombsSurroundingEmpty() {
 function addFlags(square) {
     if (gameOver) 
         return;
+    
+    // only add flags to non revealed squares
     if (!square.classList.contains('revealed-square') && (flags < bombCount)) {
+        // add flag
         if (!square.classList.contains('flag')) {
             square.classList.add('flag');
-            square.innerHTML = 'flag';
+            square.innerHTML = '<i class="fab fa-font-awesome-flag"></i>';
             flags ++;
 
+            //every time flag is added, check for victory
             isVictory();
+        // remove flag
         } else {
             square.classList.remove('flag');
             square.innerHTML = '';
@@ -96,80 +105,84 @@ function addFlags(square) {
     }
 }
 
-// Click function 
+// Left click function
 function click(square) {
+    // removes left click optionality if the game is over
     if (gameOver) 
         return;
+    // removes left click optionality for revealed squares, or squares containing flag
     if (square.classList.contains('revealed-square') || square.classList.contains('flag'))
         return;
 
-    if (square.classList.contains('bomb')) {
+    // check which kind of a field is clicked and invoke action
+    if (square.classList.contains('bomb')) { // square with bomb
         isDefeat();
-    } else {
-        let total = square.getAttribute('data');
+    } else { // square without bomb 
+        let total = square.getAttribute('data'); 
 
-        if (total != 0) {
+        if (total != 0) { // square with val > 0
             square.classList.add('revealed-square');
             square.innerHTML = total;
             return;
         }
 
-        revealSquare(square);
+        revealSquare(square); // square with val = 0, call for recursive function
 
         square.classList.add('revealed-square');
     }
 }
 
-// Reveal squares with data value '0', with recursion
+// Reveal squares with data value '0', using recursion
 function revealSquare(square) {
     let currentId = square.id;
+    // border values
     const leftBorder = (currentId % width === 0);
     const rightBorder = (currentId % width === width - 1);
 
     setTimeout(() => {
-        // Checking North direction
+        // north direction
         if (currentId > (width - 1)) {
             const newId = parseInt(currentId) - width;
             const newSquare = document.getElementById(newId);
             click(newSquare);
         }
-        // Checking East direction
+        // east direction
         if (currentId < (width * height - 1) && !rightBorder) {
             const newId = parseInt(currentId) + 1;
             const newSquare = document.getElementById(newId);
             click(newSquare);
         }
-        // Checking South direction
+        // south direction
         if (currentId < (width * height - width)) {
             const newId = parseInt(currentId) + width;
             const newSquare = document.getElementById(newId);
             click(newSquare);
         }
-        // Checking West direction
+        // west direction
         if (currentId > 0 && !leftBorder) {
             const newId = parseInt(currentId) -1;
             const newSquare = document.getElementById(newId);
             click(newSquare);
         }
-        // Checking North-East direction
+        // north-east direction
         if (currentId < (width * height - width - 1) && !rightBorder) {
             const newId = parseInt(currentId) + 1 + width;
             const newSquare = document.getElementById(newId);
             click(newSquare);
         } 
-        // Checking South-East direction
+        // south-east direction
         if (currentId > (width - 1) && !rightBorder) {
             const newId = parseInt(currentId) + 1 - width;
             const newSquare = document.getElementById(newId);
             click(newSquare);
         }
-        // Checking North-West direction
+        // north-west direction
         if (currentId < (width * height - width) && !leftBorder) {
             const newId = parseInt(currentId) - 1 + width;
             const newSquare = document.getElementById(newId);
             click(newSquare);
         }
-        // Checking South-West direction
+        // south-west direction
         if (currentId > width && !leftBorder) {
             const newId = parseInt(currentId) - 1 - width;
             const newSquare = document.getElementById(newId);
@@ -183,11 +196,14 @@ function isVictory() {
     let bombFlag = 0;
 
     for (let i = 0; i < squares.length; i++) {
+        // check if flag and bomb position is matched
         if (squares[i].classList.contains('flag') && squares[i].classList.contains('bomb')) {
             bombFlag ++;
         }
+
+        // at every point also check if flag num is equal num of matched bombs with flags 
         if (bombFlag === bombCount) {
-            console.log('VICTORY'); //----------------------------------------------------------------------console log
+            alert('VICTORY'); //---------------------------------------------------------------------------------------------------------ALERT
             gameOver = true;
         }
     }
@@ -195,7 +211,7 @@ function isVictory() {
 
 // Displays Game Over
 function isDefeat() {
-    console.log('BOOOM! Game Over!');
+    alert('BOOOM! Game Over!'); //--------------------------------------------------------------------------------------------------------ALERT
     gameOver = true;
 
     displayBombs();
