@@ -1,7 +1,7 @@
 const board = document.querySelector('.board');
-let width = 10;
+let width = 15;
 let height = 10;
-let bombCount = 10;
+let bombCount = 20;
 let squares = [];
 let gameOver = false;
 
@@ -10,7 +10,6 @@ createBoard();
 // Create board filled with width*width squares
 function createBoard() {
     const shuffledSquares = shuffleSquares();
-    console.log(shuffledSquares); // ----------------------------------CONSOLE LOG
 
     for(let i = 0; i < width * height ; i++) {
         const square = document.createElement('div');
@@ -65,16 +64,11 @@ function numOfBombsSurroundingEmpty() {
                 total++;
     
             squares[i].setAttribute('data', total);
-            console.log(squares[i]); // ------------------------------------------------- CONSOLE LOG
         }
     }
 }
 
-
-
-
-
-// Game over click case
+// Click function 
 function click(square) {
     if (gameOver) 
         return;
@@ -98,7 +92,7 @@ function click(square) {
     }
 }
 
-// Reveal squares with data value 0 with recursion
+// Reveal squares with data value '0', with recursion
 function revealSquare(square) {
     let currentId = square.id;
     const leftBorder = (currentId % width === 0);
@@ -155,4 +149,3 @@ function revealSquare(square) {
         }
     }, 50);
 }
-
