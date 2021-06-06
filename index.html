@@ -62,12 +62,12 @@
             </nav>
         </div>
     </header>
-    <div id ="modal-container" class="modal-container">
+    <div id ="modal-container" class="modal-container" onclick="closeModal()">
         <div class="modal">
             <h2>Play again?</h2>
             <p>All progress will be lost!</p>
-            <button>OFC</button>
-            <button class="close">Hell NO!</button>
+            <button id="play-again" onclick="playAgain()">OFC</button>
+            <button id="do-not-play-again" onclick="closeModal()">Hell NO!</button>
         </div>
     </div>
     <!-- Minesweeper -->

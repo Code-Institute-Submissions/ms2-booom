@@ -16,7 +16,6 @@ let squares = [];
 function bodyLoaded(){
     createBoard();
     start_timer();
-    startAgainModal()
 }
 
 /* -------------------------- Functions -------------------------- */
@@ -195,7 +194,7 @@ function addFlagsToSquare(square) {
         return;
     
     // only add flags to non revealed squares
-    if (!square.classList.contains('revealed-square') && (flags < bombCount)) {
+    if (!square.classList.contains('revealed-square')) {
         // add flag
         if (!square.classList.contains('flag')) {
             addFlag(square);
@@ -204,6 +203,8 @@ function addFlagsToSquare(square) {
         // remove flag
         } else {
             removeFlag(square);
+            //every time flag is removed, check for victory
+            isVictory();
         }
     }
 }
@@ -228,14 +229,13 @@ function isVictory() {
     let bombFlag = 0;
 
     for (let i = 0; i < squares.length; i++) {
-        const square = squares[i];
         // check if flag and bomb position is matched
         if (squares[i].classList.contains('flag') && squares[i].classList.contains('bomb')) {
             bombFlag ++;
         }
 
         // at every point also check if flag num is equal num of matched bombs with flags 
-        if (bombFlag === bombCount) {
+        if (bombFlag === bombCount && bombFlag === flags) {
             alert('VICTORY'); //---------------------------------------------------------------------------------------------------------ALERT
             gameOver = true;
         }
@@ -260,29 +260,43 @@ function displayBombs() {
 }
 
 /* -------------------------- Start New Game Button -------------------------- */
-// Starts new game
+const modalContainer = document.getElementById('modal-container');
+
+// Function to invoke New Game
 function startAgain() {
+    // check if any of the squares are flagged or revealed
+        // if they are, invoke click function
+        // if they aren't, proceed with refreshing the game
+    for (let i = 0; i < squares.length; i++) {
+        if (squares[i].classList.contains('revealed-square') || squares[i].classList.contains('flag')) {
+            const modalContainer = document.getElementById('modal-container');
+            modalContainer.classList.add('show');
+            return;
+        }
+    }
+
+    refreshGame();
+}
+
+// Refresh the game
+function refreshGame() {
     gameOver = false;
     squares = [];
 
     $("#board").empty();
     createBoard();
 }
-//modal
-function startAgainModal() {
-    const open = document.getElementById('new-game');
-    const modalContainer = document.getElementById('modal-container');
-    const closeThem = document.getElementsByClassName('close');
-    const close = closeThem[0];
 
-    open.addEventListener('click', () => {
-        modalContainer.classList.add('show');
-    })
-    close.addEventListener('click', () => {
-        modalContainer.classList.remove('show');
-    })
+// If this button is clicked, proceed to refresh
+function playAgain() {
+    modalContainer.classList.remove('show');
+    refreshGame();
 }
 
+// Close modal
+function closeModal() {
+    modalContainer.classList.remove('show');
+}
 /* -------------------------- Timer -------------------------- */
 // Function that counts passed time from start game 
 function start_timer() {
