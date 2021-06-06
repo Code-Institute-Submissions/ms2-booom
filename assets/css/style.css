@@ -12,7 +12,14 @@ body {
 .dark {
     background-color: var(--test-dark);
 }
-
+.new-game {
+    width: 125px;
+    height: 125px;
+}
+.new-game-svg {
+    width: 100px;
+    height: 100px;
+}
 /*
 .hidden {
     display: none;
