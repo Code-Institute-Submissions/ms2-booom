@@ -16,6 +16,7 @@ let squares = [];
 function bodyLoaded(){
     createBoard();
     start_timer();
+    startAgainModal()
 }
 
 /* -------------------------- Functions -------------------------- */
@@ -266,6 +267,20 @@ function startAgain() {
 
     $("#board").empty();
     createBoard();
+}
+//modal
+function startAgainModal() {
+    const open = document.getElementById('new-game');
+    const modalContainer = document.getElementById('modal-container');
+    const closeThem = document.getElementsByClassName('close');
+    const close = closeThem[0];
+
+    open.addEventListener('click', () => {
+        modalContainer.classList.add('show');
+    })
+    close.addEventListener('click', () => {
+        modalContainer.classList.remove('show');
+    })
 }
 
 /* -------------------------- Timer -------------------------- */

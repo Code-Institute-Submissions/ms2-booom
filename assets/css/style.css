@@ -24,6 +24,34 @@ body {
 .hidden {
     display: none;
 }*/
+/*------------------------------------------- Modal ---*/
+.modal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(144, 144, 144, 0.5);
+    pointer-events: none;
+    opacity: 0;
+
+}
+.modal-container.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+.modal {
+    width: 300px;
+    height: 300px;
+    z-index: 2000;
+    background-color: red;
+    visibility: visible;
+    display: block;
+    position: relative;
+    top:25%;
+    bottom: 0;    
+    margin: auto;
+}    
 /*------------------------------------------- Minesweeper ---*/
 .board {
     display: flex;
