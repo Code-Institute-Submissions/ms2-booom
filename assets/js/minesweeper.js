@@ -247,7 +247,7 @@ function isDefeat() {
     gameOver = true;
 
     displayBombs();
-    lose();
+    defeat();
 }
 
 // Displays all bombs when the game is over
@@ -265,6 +265,8 @@ let gameModal = document.getElementById('game-modal');
 const playAgainBtn = document.getElementById('play-again-btn');
 let modalHtml = document.createElement('div');
 
+appendAndInsert();
+
 // Function to invoke New Game
 function startAgain() {
     // check if any of the squares are flagged or revealed
@@ -273,6 +275,13 @@ function startAgain() {
     for (let i = 0; i < squares.length; i++) {
         if (squares[i].classList.contains('revealed-square') || squares[i].classList.contains('flag')) {
             gameModalContainer.classList.add('show');
+            
+            modalHtml.innerHTML = `
+                <h2>Bomb again?</h2>
+                <p>All progress will be lost!</p>
+                `;
+            appendAndInsert(modalHtml);
+
             return;
         }
     }
@@ -301,7 +310,7 @@ function closeModal() {
 }
 
 // Insert modal HTML element before buttons
-function appendAndInsert(modalHtml) {
+function appendAndInsert() {
     gameModal.appendChild(modalHtml);
     gameModal.insertBefore(modalHtml, playAgainBtn);
 }
@@ -309,7 +318,7 @@ function appendAndInsert(modalHtml) {
 // Function for Defeat message
 function defeat() {
     modalHtml.innerHTML = "<h2>Defeat</h2>";
-    appendAndInsert(modalHtml);
+    //appendAndInsert(modalHtml);
 
     gameModalContainer.classList.add('show');
 }
