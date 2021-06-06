@@ -4,7 +4,7 @@ const board = document.getElementById('board');
 let width = 15;
 let height = 10;
 let widthTimesHeight = width * height;
-let bombCount = 20;
+let bombCount = 10;
 let flags = 0;
 
 let gameOver = false;
@@ -241,13 +241,13 @@ function isVictory() {
         }
     }
 }
-
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Displays Game Over
 function isDefeat() {
-    alert('BOOOM! Game Over!'); //--------------------------------------------------------------------------------------------------------ALERT
     gameOver = true;
 
     displayBombs();
+    lose();
 }
 
 // Displays all bombs when the game is over
@@ -261,6 +261,9 @@ function displayBombs() {
 
 /* -------------------------- Start New Game Button & Win/Lose Modals -------------------------- */
 const gameModalContainer = document.getElementById('game-modal-container');
+let gameModal = document.getElementById('game-modal');
+const playAgainBtn = document.getElementById('play-again-btn');
+let modalHtml = document.createElement('div');
 
 // Function to invoke New Game
 function startAgain() {
@@ -297,6 +300,19 @@ function closeModal() {
     gameModalContainer.classList.remove('show');
 }
 
+// Insert modal HTML element before buttons
+function appendAndInsert(modalHtml) {
+    gameModal.appendChild(modalHtml);
+    gameModal.insertBefore(modalHtml, playAgainBtn);
+}
+
+// Function for Defeat message
+function defeat() {
+    modalHtml.innerHTML = "<h2>Defeat</h2>";
+    appendAndInsert(modalHtml);
+
+    gameModalContainer.classList.add('show');
+}
 
 /* -------------------------- Timer -------------------------- */
 // Function that counts passed time from start game 
