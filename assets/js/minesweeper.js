@@ -267,6 +267,12 @@ let modalHtml = document.createElement('div');
 
 appendAndInsert();
 
+// Insert modal HTML element before buttons
+function appendAndInsert() {
+    gameModal.appendChild(modalHtml);
+    gameModal.insertBefore(modalHtml, playAgainBtn);
+}
+
 // Function to invoke New Game
 function startAgain() {
     // check if any of the squares are flagged or revealed
@@ -309,16 +315,12 @@ function closeModal() {
     gameModalContainer.classList.remove('show');
 }
 
-// Insert modal HTML element before buttons
-function appendAndInsert() {
-    gameModal.appendChild(modalHtml);
-    gameModal.insertBefore(modalHtml, playAgainBtn);
-}
-
 // Function for Defeat message
 function defeat() {
-    modalHtml.innerHTML = "<h2>Defeat</h2>";
-    //appendAndInsert(modalHtml);
+    modalHtml.innerHTML = `
+    <h2>Defeat! ..Noob alert!</h2>
+    <h4>Would you like to BOMB again?</h4>
+    `;
 
     gameModalContainer.classList.add('show');
 }
