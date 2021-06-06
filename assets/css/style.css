@@ -37,3 +37,8 @@ body {
 .revealed-square {
     background-color: seagreen;
 }
+
+.mine {
+    width: 30px;
+    height: 30px;
+}
