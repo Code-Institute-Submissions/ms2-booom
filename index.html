@@ -19,7 +19,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
-<body>
+<body onload="bodyLoaded()">
     <!-- Header -->
     <header>
         <div class="container">
@@ -66,7 +66,8 @@
     <!-- Minesweeper -->
     <section>
         <h1>MINESWEEPER</h1>
-        <div class="board dark"></div>
+        <button class="new-game" onclick="startAgain()">NEW</button>
+        <div id="board" class="board dark"></div>
     </section>
 
     <!-- Footer -->

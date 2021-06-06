@@ -1,22 +1,36 @@
 /* -------------------------- Variables -------------------------- */
-const board = document.querySelector('.board');
+const board = document.getElementById('board');
+
 let width = 15;
 let height = 10;
+let widthTimesHeight = width * height;
 let bombCount = 20;
 let flags = 0;
-let squares = [];
+
 let gameOver = false;
 
+let squares = [];
+
+
 /* -------------------------- Main -------------------------- */
-createBoard();
+function bodyLoaded(){
+    createBoard();
+}
+
 
 /* -------------------------- Functions -------------------------- */
 // Create board filled with squares
 function createBoard() {
     const shuffledSquares = shuffleSquares();
 
+    board.style.width = width * 50 + "px";
+    board.style.height = height * 50 + "px";
+    board.style.display = "grid";
+    board.style.gridTemplateColumns = "repeat("+ width +", 50px)";
+    board.style.gridTemplateRows = "repeat("+ height +", 50px)";
+
     // iterate throughout the board, create div's for squares
-    for(let i = 0; i < width * height ; i++) {
+    for(let i = 0; i < widthTimesHeight ; i++) {        
         const square = document.createElement('div');
         square.setAttribute('id', i);
         // assign shuffled values to squares
@@ -66,13 +80,13 @@ function numOfBombsSurroundingEmpty() {
                 total++;
             if (i > width && !leftBorder && squares[i - 1 - width].classList.contains('bomb'))
                 total++;
-            if (i < (width * height - 1) && !rightBorder && squares[i + 1].classList.contains('bomb'))
+            if (i < (widthTimesHeight - 1) && !rightBorder && squares[i + 1].classList.contains('bomb'))
                 total++;
-            if (i < (width * height - width) && !leftBorder && squares[i -1 + width].classList.contains('bomb'))
+            if (i < (widthTimesHeight - width) && !leftBorder && squares[i -1 + width].classList.contains('bomb'))
                 total++;
-            if (i < (width * height - width - 1) && !rightBorder && squares[i + 1 + width].classList.contains('bomb'))
+            if (i < (widthTimesHeight - width - 1) && !rightBorder && squares[i + 1 + width].classList.contains('bomb'))
                 total++;
-            if (i < (width * height - width) && squares[i + width].classList.contains('bomb'))
+            if (i < (widthTimesHeight - width) && squares[i + width].classList.contains('bomb'))
                 total++;
             
             // add calculation to empty squares
@@ -147,13 +161,13 @@ function revealSquare(square) {
             click(newSquare);
         }
         // east direction
-        if (currentId < (width * height - 1) && !rightBorder) {
+        if (currentId < (widthTimesHeight - 1) && !rightBorder) {
             const newId = parseInt(currentId) + 1;
             const newSquare = document.getElementById(newId);
             click(newSquare);
         }
         // south direction
-        if (currentId < (width * height - width)) {
+        if (currentId < (widthTimesHeight - width)) {
             const newId = parseInt(currentId) + width;
             const newSquare = document.getElementById(newId);
             click(newSquare);
@@ -165,7 +179,7 @@ function revealSquare(square) {
             click(newSquare);
         }
         // north-east direction
-        if (currentId < (width * height - width - 1) && !rightBorder) {
+        if (currentId < (widthTimesHeight - width - 1) && !rightBorder) {
             const newId = parseInt(currentId) + 1 + width;
             const newSquare = document.getElementById(newId);
             click(newSquare);
@@ -177,7 +191,7 @@ function revealSquare(square) {
             click(newSquare);
         }
         // north-west direction
-        if (currentId < (width * height - width) && !leftBorder) {
+        if (currentId < (widthTimesHeight - width) && !leftBorder) {
             const newId = parseInt(currentId) - 1 + width;
             const newSquare = document.getElementById(newId);
             click(newSquare);
@@ -226,3 +240,12 @@ function displayBombs() {
     })
 }
 
+/* -------------------------- Start New Game Button -------------------------- */
+// Starts new game
+function startAgain() {
+    gameOver = false;
+    squares = [];
+
+    $("#board").empty();
+    createBoard();
+}
