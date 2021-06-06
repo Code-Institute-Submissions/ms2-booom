@@ -2,10 +2,28 @@ const board = document.querySelector('.board');
 let width = 15;
 let height = 10;
 let bombCount = 20;
+let flags = 0;
 let squares = [];
 let gameOver = false;
 
 createBoard();
+
+// Add flags
+function flags() {
+    if (gameOver) 
+        return;
+    if (!square.classList.contains('revealed') && (flags < bombCount)) {
+        if (!square.classList.contains('flag')) {
+            square.classList.add('flag');
+            square.innerHTML = 'flag';
+            flags ++;
+        } else {
+            square.classList.remove('flag');
+            square.innerHTML = '';
+            flags --;
+        }
+    }
+}
 
 // Create board filled with width*width squares
 function createBoard() {
