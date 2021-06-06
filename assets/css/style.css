@@ -20,7 +20,7 @@ body {
 .board {
     display: flex;
     flex-wrap: wrap;
-    width: 750px;
+    width: 500px;
     height: 500px;
 }
 
