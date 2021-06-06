@@ -259,8 +259,8 @@ function displayBombs() {
     })
 }
 
-/* -------------------------- Start New Game Button -------------------------- */
-const modalContainer = document.getElementById('modal-container');
+/* -------------------------- Start New Game Button & Win/Lose Modals -------------------------- */
+const gameModalContainer = document.getElementById('game-modal-container');
 
 // Function to invoke New Game
 function startAgain() {
@@ -269,8 +269,7 @@ function startAgain() {
         // if they aren't, proceed with refreshing the game
     for (let i = 0; i < squares.length; i++) {
         if (squares[i].classList.contains('revealed-square') || squares[i].classList.contains('flag')) {
-            const modalContainer = document.getElementById('modal-container');
-            modalContainer.classList.add('show');
+            gameModalContainer.classList.add('show');
             return;
         }
     }
@@ -289,14 +288,16 @@ function refreshGame() {
 
 // If this button is clicked, proceed to refresh
 function playAgain() {
-    modalContainer.classList.remove('show');
+    gameModalContainer.classList.remove('show');
     refreshGame();
 }
 
 // Close modal
 function closeModal() {
-    modalContainer.classList.remove('show');
+    gameModalContainer.classList.remove('show');
 }
+
+
 /* -------------------------- Timer -------------------------- */
 // Function that counts passed time from start game 
 function start_timer() {

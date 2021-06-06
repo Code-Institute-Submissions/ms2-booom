@@ -12,11 +12,11 @@ body {
 .dark {
     background-color: var(--test-dark);
 }
-.new-game {
+.start-again-button {
     width: 125px;
     height: 125px;
 }
-.new-game-svg {
+.start-again-svg {
     width: 100px;
     height: 100px;
 }
@@ -25,7 +25,8 @@ body {
     display: none;
 }*/
 /*------------------------------------------- Modal ---*/
-.modal-container {
+
+.game-modal-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -36,11 +37,11 @@ body {
     opacity: 0;
 
 }
-.modal-container.show {
+.game-modal-container.show {
     pointer-events: auto;
     opacity: 1;
 }
-.modal {
+.game-modal {
     width: 300px;
     height: 300px;
     z-index: 2000;
