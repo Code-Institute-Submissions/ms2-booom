@@ -1,141 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Minesweeper BOOOM! Classic MS game with a modern twist! 
         Search for mines using neighbouring fields as indicators where the mines are, find them all and win the game!">
     <meta name="keywords" content="minesweeper, minesweeper booom, booom, modern minesweeper">
     <meta author="Marja Marinic">
 
-    <link rel="icon" type="image/png" href="assets/img/favicon/favicon.png">
+    <link rel="icon" type="image/png" href="./assets/img/favicon/favicon.png">
     <title>BOOOM!</title>
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 </head>
+
 <body onload="bodyLoaded()">
-    <div class="wrapper">
-        <!-- Header -->
-        <header>
-            <div class="container">
-                <nav class="navbar navbar-light fixed-top navbar-layout">
-                    <a href="index.html" class="navbar-brand"> 
-                        <img class="logo" src="assets/img/logo/logo.svg" alt="Minesweeper BOOOM! logo">
-                    </a>
-                    
-                    <button
-                        class="navbar-toggler settings-btn"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#toggleMobileMenu"
-                        aria-controls="toggleMobileMenu"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                    >
-                        <i class="fas fa-cog settings-icon"></i>
-                    </button>
 
-                    <div class="collapse navbar-collapse" id="toggleMobileMenu">
-                        <ul class="navbar-nav text-end">
-                            <li>
-                                <a class="nav-link" href="#">
-                                    <button type="button">Tutorial</button>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="#">
-                                    <button type="button">Settings</button>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="#">
-                                    <button type="button">Leaderboard</button>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-light sticky-top navbar-layout">
+            <a href="index.html" class="navbar-brand">
+                <img class="logo" src="./assets/img/logo/logo.svg" alt="Minesweeper BOOOM! logo">
+            </a>
+
+            <button class="navbar-toggler settings-btn" type="button" data-bs-toggle="collapse"
+                data-bs-target="#toggleMobileMenu" aria-controls="toggleMobileMenu" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-cog settings-icon"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="toggleMobileMenu">
+                <ul class="navbar-nav text-end">
+                    <li>
+                        <a class="nav-link" href="#">
+                            <button type="button">Tutorial</button>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">
+                            <button type="button" onclick="openSettings()">Settings</button>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">
+                            <button type="button">Leaderboard</button>
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </header>
+        </nav>
+    </header>
 
-        <!-- Minesweeper Refresh Game/ Win/ Lose Modal -->
-        <div id ="game-modal-container" class="game-modal-container" onclick="closeModal()">
-            <div id="game-modal" class="game-modal">
-                <button id="play-again-btn" onclick="playAgain()">OFC</button>
-                <button id="do-not-play-again-btn" onclick="closeModal()">Hell NO!</button>
+    <!-- Minesweeper Refresh Game/ Win/ Lose Modal -->
+    <div id="game-modal-container" class="game-modal-container" onclick="closeModal()">
+        <div id="game-modal" class="game-modal">
+            <button id="play-again-btn" onclick="playAgain()">OFC</button>
+            <button id="do-not-play-again-btn" onclick="closeModal()">Hell NO!</button>
+        </div>
+    </div>
+
+    <!-- Connect Modal -->
+    <div id="connect-modal-container" class="connect-modal-container">
+        <div id="connect-modal" class="connect-modal">
+            <form method="POST" action="https://formdump.codeinstitute.net/">
+                <label for="form-name">Name:</label>
+                <input id="form-name" type="text" name="name" placeholder="Please enter your name!" required />
+
+                <label for="form-email">Email:</label>
+                <input id="form-email" type="email" name="email" placeholder="Please enter your email!" required />
+
+                <label for="messageinput">message:</label>
+                <textarea id="messageinput" placeholder="PLEASE NOTE I DON'T WORK" required>
+                            </textarea>
+
+                <div>
+                    <input type="submit" value="Send" />
+                    <input type="reset" value="Clear Form" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Settings modal -->
+    <div id="settings-modal" class="game-modal-container" onclick="closeModal()">
+        <div class="game-modal">
+            <h4>Settings</h4>
+            <button onclick="chooseDifficulty('easy')">Easy</button>
+            <button onclick="chooseDifficulty('medium')">Medium</button>
+            <button onclick="chooseDifficulty('hard')">Hard</button>
+            <button onclick="chooseDifficulty('custom')">Custom</button>
+            <div class="custom-mode">
+                <p>*Custom games are not scored</p>
+                <input type="number" id="width" />
+                <input type="number" id="height" />
+                <input type="number" id="bomb" />
+                <button onclick="createCustomGame()">Custom</button>
             </div>
         </div>
+    </div>
 
-        <!-- Connect Modal -->
-        <div id ="connect-modal-container" class="connect-modal-container">
-            <div id="connect-modal" class="connect-modal">
-                <form method="POST" action="https://formdump.codeinstitute.net/">
-                    <label for="form-name">Name:</label>
-                    <input id="form-name" type="text" name="name" placeholder="Please enter your name!" required/>
-
-                    <label for="form-email">Email:</label>
-                    <input id="form-email" type="email" name="email" placeholder="Please enter your email!" required />
-
-                    <label for="messageinput">message:</label>
-                    <textarea id="messageinput" placeholder="PLEASE NOTE I DON'T WORK" required>
-                    </textarea>
-
-                    <div>
-                      <input type="submit" value="Send" />
-                      <input type="reset" value="Clear Form" />
-                    </div>
-                  </form>
-            </div>
-        </div>
-
+    <div class="container">
         <!-- Minesweeper -->
-        <section class="wrap-game">
-            <div class="container game-container">
-                <div class="row ms-items">
-                    <div class="col-2 flag-count">
-                        <div id="flag-count">
-                            00
-                        </div>
-                    </div>
-                    <div class="col-2 flag-btn">
-                        <button id="remap-click" class="flag-btn-size" onclick="remapClick()">
-                            <i class="far fa-flag"></i>
-                        </button>
-                    </div>
-                    <div class="col-4">
-                        <button id="start-again-button" class="start-again-button" onclick="startAgain()">
-                            <svg class="start-again-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 231.05"><defs><style>.cls-1,.cls-3{fill:#a00d95;}.cls-2{fill:#520254;}.cls-3{font-size:36px;font-family:ComicSansMS, Comic Sans MS;}.cls-4{fill:none;stroke:#520254;stroke-miterlimit:10;stroke-width:6px;}</style></defs><title>Play Again</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="cls-1" cx="80" cy="151.05" r="80"/><circle class="cls-2" cx="79.5" cy="150.55" r="70"/><polygon class="cls-1" points="61.49 151.91 70.97 161.39 58.34 174.02 48.86 164.54 39.38 174.02 26.75 161.39 36.23 151.91 26.75 142.43 39.38 129.8 48.86 139.28 58.34 129.8 70.97 142.43 61.49 151.91"/><polygon class="cls-1" points="124.02 151.91 133.5 161.39 120.87 174.02 111.39 164.54 101.91 174.02 89.28 161.39 98.76 151.91 89.28 142.43 101.91 129.8 111.39 139.28 120.87 129.8 133.5 142.43 124.02 151.91"/><text class="cls-3" transform="translate(66.49 177.08) rotate(90)">3</text><path class="cls-4" d="M85.14,98.57s-36.64-47.89-22-62.65S99.21,45.71,121,38.51s-9.17-13.91-14.1-27.12"/><polygon class="cls-1" points="108 4.16 112.17 0 112.76 5.52 118.92 4.31 115.7 9.08 121.5 11.28 115.7 13.47 118.92 18.25 112.76 17.03 112.17 22.55 108 18.39 103.83 22.55 103.24 17.03 97.08 18.25 100.3 13.47 94.5 11.28 100.3 9.08 97.08 4.31 103.24 5.52 103.83 0 108 4.16"/></g></g></svg>
-                        </button>
-                    </div>
+        <section class="game-container">
 
-                    <div class="col-4 timer">
-                        <div id="timer">
-                            00:00
-                        </div>
+            <div class="row ms-items">
+                <div class="col-2 flag-count">
+                    <div id="flag-count">
+                        00
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col minesweeper">
-                        <div id="board" class="board">
-                        </div>
+                <div class="col-2 flag-btn">
+                    <button id="remap-click" class="flag-btn-size" onclick="remapClick()">
+                        <i class="far fa-flag"></i>
+                    </button>
+                </div>
+                <div class="col-4">
+                    <button id="start-again-button" class="start-again-button" onclick="startAgain()">
+                        <svg class="start-again-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 231.05">
+                            <defs>
+                                <style>
+                                    .cls-1,
+                                    .cls-3 {
+                                        fill: #a00d95;
+                                    }
+
+                                    .cls-2 {
+                                        fill: #520254;
+                                    }
+
+                                    .cls-3 {
+                                        font-size: 36px;
+                                        font-family: ComicSansMS, Comic Sans MS;
+                                    }
+
+                                    .cls-4 {
+                                        fill: none;
+                                        stroke: #520254;
+                                        stroke-miterlimit: 10;
+                                        stroke-width: 6px;
+                                    }
+                                </style>
+                            </defs>
+                            <title>Play Again</title>
+                            <g id="Layer_2" data-name="Layer 2">
+                                <g id="Layer_1-2" data-name="Layer 1">
+                                    <circle class="cls-1" cx="80" cy="151.05" r="80" />
+                                    <circle class="cls-2" cx="79.5" cy="150.55" r="70" />
+                                    <polygon class="cls-1"
+                                        points="61.49 151.91 70.97 161.39 58.34 174.02 48.86 164.54 39.38 174.02 26.75 161.39 36.23 151.91 26.75 142.43 39.38 129.8 48.86 139.28 58.34 129.8 70.97 142.43 61.49 151.91" />
+                                    <polygon class="cls-1"
+                                        points="124.02 151.91 133.5 161.39 120.87 174.02 111.39 164.54 101.91 174.02 89.28 161.39 98.76 151.91 89.28 142.43 101.91 129.8 111.39 139.28 120.87 129.8 133.5 142.43 124.02 151.91" />
+                                    <text class="cls-3" transform="translate(66.49 177.08) rotate(90)">3</text>
+                                    <path class="cls-4"
+                                        d="M85.14,98.57s-36.64-47.89-22-62.65S99.21,45.71,121,38.51s-9.17-13.91-14.1-27.12" />
+                                    <polygon class="cls-1"
+                                        points="108 4.16 112.17 0 112.76 5.52 118.92 4.31 115.7 9.08 121.5 11.28 115.7 13.47 118.92 18.25 112.76 17.03 112.17 22.55 108 18.39 103.83 22.55 103.24 17.03 97.08 18.25 100.3 13.47 94.5 11.28 100.3 9.08 97.08 4.31 103.24 5.52 103.83 0 108 4.16" />
+                                </g>
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="col-4 timer">
+                    <div id="timer">
+                        00:00
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col minesweeper">
+                    <div id="board" class="board">
+                    </div>
+                </div>
+            </div>
+
         </section>
     </div>
-        <!-- Footer -->
-        <footer class="footer-styles">
-            <div class="container">
-                <div class="row">
+
+    <!-- Footer -->
+    <footer class="fixed-bottom d-inline-flex justify-content-evenly w-100 ">
+
+        <!-- <div class="row">
                     <div class="col-5 align-footer">
                         <a href="#">
-                            <button class="connect-btn" type="button" onclick="openConnectModal()"><i class="far fa-envelope-open"></i>
+                            <button class="connect-btn" type="button"><i class="far fa-envelope-open"></i>
                                 Connect
                             </button>
                         </a>
@@ -148,17 +204,36 @@
                         <a href="https://www.linkedin.com/in/marja-marinic-6968501a6/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in social-links"></i></a>
                         <a href="https://instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram social-links"></i></a>
                     </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-    
+                </div> -->
+        <a href="#" class="mr-auto flex-fill">
+            <button class="connect-btn" type="button" onclick="openConnectModal()">
+                <i class="far fa-envelope-open"></i>
+                Connect
+            </button>
+        </a>
+        <i class="fas fa-volume-mute volume-icon p-2 flex-fill"></i>
+        <div class=" p-2 justify-content-end">
+            <a href="https://github.com/almost-good" target="_blank" rel="noopener"><i
+                    class="fab fa-github social-links"></i></a>
+            <a href="https://www.linkedin.com/in/marja-marinic-6968501a6/" target="_blank" rel="noopener"><i
+                    class="fab fa-linkedin-in social-links"></i></a>
+            <a href="https://instagram.com/" target="_blank" rel="noopener"><i
+                    class="fab fa-instagram social-links"></i></a>
+        </div>
+
+    </footer>
+
+
 
     <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script>
     <!-- Jquery CDN -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- Custom JS Script -->
     <script src="assets/js/minesweeper.js" type="text/javascript"></script>
 </body>
+
 </html>

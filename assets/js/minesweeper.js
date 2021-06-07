@@ -3,10 +3,10 @@
 
 const board = document.getElementById('board');
 
-let width = 8;
-let height = 15;
-let widthTimesHeight = width * height;
-let bombCount = 10;
+let width=8;
+let height=15;
+let widthTimesHeight;
+let bombCount=10;
 let flags = 0;
 
 let gameOver = false;
@@ -22,13 +22,16 @@ let squares = [];
 
 //https://stackoverflow.com/a/3540295
 
-function bodyLoaded(){
-    if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+function bodyLoaded() {
+    if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         width = 8;
         height = 11;
-    }
+        bombCount=10;
+    }   
+    
     createBoard();
     startTimer();
+
     flagCounter();
 }
 
@@ -45,11 +48,18 @@ function bodyLoaded(){
 
 // Create board filled with squares
 function createBoard() {
+    //cleanup
+    gameOver = false;
+    squares = [];
+    $("#board").empty();
+
+    widthTimesHeight = width * height;
+
     const shuffledSquares = shuffleSquares();
     addBoardGrid();
 
     // iterate throughout the board, create div's for squares
-    for(let i = 0; i < widthTimesHeight ; i++) {        
+    for (let i = 0; i < widthTimesHeight; i++) {
         const square = document.createElement('div');
         square.setAttribute('id', i);
         // assign shuffled values to squares
@@ -58,7 +68,6 @@ function createBoard() {
         squares.push(square);
 
         // invoke left click event
-        
         square.addEventListener('click', function(e) {
             if (remapFlagActive) {
                 // check if remapClick function is active
@@ -68,14 +77,17 @@ function createBoard() {
             click(square);
         })
 
+
         // invoke right click event
-        square.oncontextmenu = function(e) {
+        square.oncontextmenu = function (e) {
             e.preventDefault();
             addFlagsToSquare(square);
         }
     }
     // invoke function that adds total of how many bombs empty field is touching
     numOfBombsSurroundingEmpty();
+
+    countFlags = bombCount;
 }
 
 // Add dynamic board grid
@@ -84,8 +96,8 @@ function addBoardGrid() {
     board.style.height = height * 40 + "px";
 
     board.style.display = "grid";
-    board.style.gridTemplateColumns = "repeat("+ width +", 40px)";
-    board.style.gridTemplateRows = "repeat("+ height +", 40px)";
+    board.style.gridTemplateColumns = "repeat(" + width + ", 40px)";
+    board.style.gridTemplateRows = "repeat(" + height + ", 40px)";
 }
 
 
@@ -98,9 +110,9 @@ function shuffleSquares() {
     const bombArray = Array(bombCount).fill('bomb');
     const emptyArray = Array(widthTimesHeight - bombCount).fill('empty');
     let boardArray = emptyArray.concat(bombArray);
-    
-    boardArray = boardArray.sort(() => Math.random() -0.5);
-    
+
+    boardArray = boardArray.sort(() => Math.random() - 0.5);
+
     return boardArray;
 }
 
@@ -108,13 +120,13 @@ function shuffleSquares() {
 function numOfBombsSurroundingEmpty() {
     for (let i = 0; i < squares.length; i++) {
         const leftBorder = (i % width === 0);
-        const rightBorder = (i % width === width -1);
+        const rightBorder = (i % width === width - 1);
         let total = 0;
-    
+
         if (squares[i].classList.contains('empty')) {
-            if (i > 0 && !leftBorder && squares[i - 1].classList.contains('bomb')) 
+            if (i > 0 && !leftBorder && squares[i - 1].classList.contains('bomb'))
                 total++;
-            if (i > (width - 1) && !rightBorder && squares[i + 1 - width].classList.contains('bomb')) 
+            if (i > (width - 1) && !rightBorder && squares[i + 1 - width].classList.contains('bomb'))
                 total++;
             if (i > (width - 1) && squares[i - width].classList.contains('bomb'))
                 total++;
@@ -122,13 +134,14 @@ function numOfBombsSurroundingEmpty() {
                 total++;
             if (i < (widthTimesHeight - 1) && !rightBorder && squares[i + 1].classList.contains('bomb'))
                 total++;
-            if (i < (widthTimesHeight - width) && !leftBorder && squares[i -1 + width].classList.contains('bomb'))
+            if (i < (widthTimesHeight - width) && !leftBorder && squares[i - 1 + width].classList.contains('bomb'))
                 total++;
+                //todo
             if (i < (widthTimesHeight - width - 1) && !rightBorder && squares[i + 1 + width].classList.contains('bomb'))
                 total++;
             if (i < (widthTimesHeight - width) && squares[i + width].classList.contains('bomb'))
                 total++;
-            
+
             // add calculation to empty squares
             squares[i].setAttribute('data', total);
         }
@@ -160,14 +173,14 @@ function revealSquare(square) {
         }
         // west direction
         if (currentId > 0 && !leftBorder) {
-            const newId = parseInt(currentId) -1;
+            const newId = parseInt(currentId) - 1;
             newSquare(newId);
         }
         // north-east direction
         if (currentId < (widthTimesHeight - width - 1) && !rightBorder) {
             const newId = parseInt(currentId) + 1 + width;
             newSquare(newId);
-        } 
+        }
         // south-east direction
         if (currentId > (width - 1) && !rightBorder) {
             const newId = parseInt(currentId) + 1 - width;
@@ -199,17 +212,13 @@ function newSquare(newId) {
 
 // Left click function
 function click(square) {
-    // check if the right click is flag
-    //if(remapFlagActive)
-       // return;
-
     // check if it's first click to start timer
     firstClick++;
-    if(firstClick === 1) {
+    if (firstClick === 1) {
         startTimer();
     }
     // removes left click optionality if the game is over
-    if (gameOver) 
+    if (gameOver)
         return;
     // removes left click optionality for revealed squares, or squares containing flag
     if (square.classList.contains('revealed-square') || square.classList.contains('flag'))
@@ -219,7 +228,7 @@ function click(square) {
     if (square.classList.contains('bomb')) { // square with bomb
         isDefeat();
     } else { // square without bomb 
-        let total = square.getAttribute('data'); 
+        let total = square.getAttribute('data');
 
         if (total != 0) { // square with val > 0
             square.classList.add('revealed-square');
@@ -240,9 +249,9 @@ function click(square) {
 
 // Add flags to squares
 function addFlagsToSquare(square) {
-    if (gameOver) 
+    if (gameOver)
         return;
-    
+
     // only add flags to non revealed squares
     if (!square.classList.contains('revealed-square')) {
         // add flag
@@ -250,7 +259,7 @@ function addFlagsToSquare(square) {
             addFlag(square);
             //every time flag is added, check for victory
             isVictory();
-        // remove flag
+            // remove flag
         } else {
             removeFlag(square);
             //every time flag is removed, check for victory
@@ -263,7 +272,7 @@ function addFlagsToSquare(square) {
 function addFlag(square) {
     square.classList.add('flag');
     square.innerHTML = '<i class="fab fa-font-awesome-flag"></i>';
-    flags ++;
+    flags++;
 
     // flags for flag counter button
     countFlags--;
@@ -274,7 +283,7 @@ function addFlag(square) {
 function removeFlag(square) {
     square.classList.remove('flag');
     square.innerHTML = '';
-    flags --;
+    flags--;
 
     // flags for flag counter button
     countFlags++;
@@ -293,15 +302,14 @@ function isVictory() {
     for (let i = 0; i < squares.length; i++) {
         // check if flag and bomb position is matched
         if (squares[i].classList.contains('flag') && squares[i].classList.contains('bomb')) {
-            bombFlag ++;
+            bombFlag++;
         }
 
         // at every point also check if flag num is equal num of matched bombs with flags 
         if (bombFlag === bombCount && bombFlag === flags) {
             victory();
             flags = 0;
-            gameOver = true;
-            console.log(gameOver);
+            gameOver = true;           
         }
     }
 }
@@ -317,7 +325,7 @@ function isDefeat() {
 // Displays all bombs when the game is over
 function displayBombs() {
     squares.forEach(square => {
-        if(square.classList.contains('bomb')) {
+        if (square.classList.contains('bomb')) {
             square.innerHTML = '<svg class="mine" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 231.05"><defs><style>.cls-1{fill:#a00d95;}.cls-2{fill:#520254;}.cls-3{fill:none;stroke:#520254;stroke-miterlimit:10;stroke-width:6px;}</style></defs><title>bomb</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="cls-1" cx="80" cy="151.05" r="80"/><circle class="cls-2" cx="79.5" cy="150.55" r="70"/><path class="cls-3" d="M85.14,98.57s-36.64-47.89-22-62.65S99.21,45.71,121,38.51s-9.17-13.91-14.1-27.12"/><polygon class="cls-1" points="111 4.16 115.17 0 115.76 5.52 121.92 4.31 118.7 9.08 124.5 11.28 118.7 13.47 121.92 18.25 115.76 17.03 115.17 22.55 111 18.39 106.83 22.55 106.24 17.03 100.08 18.25 103.3 13.47 97.5 11.28 103.3 9.08 100.08 4.31 106.24 5.52 106.83 0 111 4.16"/></g></g></svg>';
         }
     })
@@ -335,6 +343,55 @@ const gameModalContainer = document.getElementById('game-modal-container');
 let gameModal = document.getElementById('game-modal');
 const playAgainBtn = document.getElementById('play-again-btn');
 let modalHtml = document.createElement('div');
+const settingsModal = document.getElementById('settings-modal');
+
+// Settings
+function openSettings() {
+  document.getElementById("toggleMobileMenu").classList.remove("show");  
+    settingsModal.classList.add('show');   
+}
+
+function chooseDifficulty(difficulty) { 
+    switch (difficulty) {
+        case 'easy':
+            width=5;
+            height=5;
+            bombCount=5;
+            break;
+        case 'medium':
+            width=10;
+            height=10;
+            bombCount=10;
+            break;
+        case 'hard':
+            width=15;
+            height=15;
+            bombCount=15;
+            break;
+        case 'custom':
+            //toggle visibility
+            break;
+    }
+    console.log(width, height);
+    //close modal
+  
+
+    if(difficulty !=='custom'){
+        settingsModal.classList.remove('show');
+        createBoard();
+    }
+
+}
+
+function createCustomGame(){
+width=document.getElementById("width").value;
+height=document.getElementById("height").value;
+bombCount=document.getElementById("bomb").value;
+console.log(bombCount);
+    settingsModal.classList.remove('show');
+    createBoard();
+}
+
 
 appendAndInsert();
 
@@ -346,12 +403,12 @@ function appendAndInsert() {
 
 // Function to invoke New Game
 function startAgain() {
-    if(gameOver) 
+    if (gameOver)
         refreshGame();
 
     // check if any of the squares are flagged or revealed
-        // if they are, invoke click function
-        // if they aren't, proceed with refreshing the game
+    // if they are, invoke click function
+    // if they aren't, proceed with refreshing the game
     for (let i = 0; i < squares.length; i++) {
         if (squares[i].classList.contains('revealed-square') || squares[i].classList.contains('flag')) {
             gameModalContainer.classList.add('show');
@@ -374,10 +431,7 @@ function refreshGame() {
     resetTimer();
 
     defaultSvg();
-    gameOver = false;
-    squares = [];
-
-    $("#board").empty();
+    
     createBoard();
 }
 
@@ -433,24 +487,24 @@ let firstClick = 0;
 function startTimer() {
     if (firstClick) {
 
-    
+
         let timer = document.getElementById('timer').innerHTML;
         let separateTime = timer.split(":");
         let min = separateTime[0];
         let sec = separateTime[1];
 
-        if(sec == 59) {
+        if (sec == 59) {
             min++;
             sec = 0;
 
-            if(sec == 0) 
+            if (sec == 0)
                 sec = "0" + sec;
-            if(min < 10) 
+            if (min < 10)
                 min = "0" + min;
         } else {
             sec++;
 
-            if(sec < 10) 
+            if (sec < 10)
                 sec = "0" + sec;
         }
 
@@ -477,19 +531,18 @@ function resetTimer() {
 
 
 /* -------------------------- Flag Count -------------------------- */
+
+
+
 let countFlags;
-
-
 
 // Add flag count to HTML
 function flagCounter() {
-    countFlags = bombCount;
+  
+    console.log('flag counter je pozvan');
 
     document.getElementById("flag-count").innerHTML = countFlags;
 }
-
-
-
 
 
 /* -------------------------- Remap Left & Right Click -------------------------- */
@@ -536,4 +589,3 @@ function openConnectModal() {
     ;
     
 }
-
