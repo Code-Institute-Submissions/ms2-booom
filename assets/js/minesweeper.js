@@ -22,6 +22,11 @@ let squares = [];
 
 
 function bodyLoaded(){
+        //https://stackoverflow.com/a/3540295
+    if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        width=10;
+        height=15;
+    }
     createBoard();
     startTimer();
     flagCounter();
