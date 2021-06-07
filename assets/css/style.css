@@ -3,13 +3,23 @@
     --test-dark: rgb(112, 14, 60);
 }
 
-
+* {
+    margin: 0;
+    padding: 0;
+  }
 
 /* GENERAL STYLES */
-body {
-    overflow: hidden;
+.wrapper {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
 }
 
+
+
+
+
+/* HEADER */
 
 
 body {

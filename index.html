@@ -20,105 +20,108 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body onload="bodyLoaded()">
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar navbar-light">
-                <a href="index.html" class="navbar-brand"> 
-                    <img src="assets/img/logo/logo.svg" alt="Minesweeper BOOOM! logo" width="200" height="70" class="d-inline-block align-center">
-                </a>
-                
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#toggleMobileMenu"
-                    aria-controls="toggleMobileMenu"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <i class="fas fa-cog"></i>
-                </button>
+    <div class="wrapper">
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <nav class="navbar navbar-light">
+                    <a href="index.html" class="navbar-brand"> 
+                        <img src="assets/img/logo/logo.svg" alt="Minesweeper BOOOM! logo" width="200" height="70" class="d-inline-block align-center">
+                    </a>
+                    
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#toggleMobileMenu"
+                        aria-controls="toggleMobileMenu"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <i class="fas fa-cog"></i>
+                    </button>
 
-                <div class="collapse navbar-collapse" id="toggleMobileMenu">
-                    <ul class="navbar-nav text-end">
-                        <li>
-                            <a class="nav-link" href="#">
-                                <button type="button">Tutorial</button>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#">
-                                <button type="button">Settings</button>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#">
-                                <button type="button">Leaderboard</button>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+                    <div class="collapse navbar-collapse" id="toggleMobileMenu">
+                        <ul class="navbar-nav text-end">
+                            <li>
+                                <a class="nav-link" href="#">
+                                    <button type="button">Tutorial</button>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#">
+                                    <button type="button">Settings</button>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#">
+                                    <button type="button">Leaderboard</button>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Minesweeper Refresh Game/ Win/ Lose Modal -->
+        <div id ="game-modal-container" class="game-modal-container" onclick="closeModal()">
+            <div id="game-modal" class="game-modal">
+                <button id="play-again-btn" onclick="playAgain()">OFC</button>
+                <button id="do-not-play-again-btn" onclick="closeModal()">Hell NO!</button>
+            </div>
         </div>
-    </header>
 
-    <!-- Minesweeper Refresh Game/ Win/ Lose Modal -->
-    <div id ="game-modal-container" class="game-modal-container" onclick="closeModal()">
-        <div id="game-modal" class="game-modal">
-            <button id="play-again-btn" onclick="playAgain()">OFC</button>
-            <button id="do-not-play-again-btn" onclick="closeModal()">Hell NO!</button>
-        </div>
-    </div>
-
-    <!-- Minesweeper -->
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    <div id="flag-count">
-                        00
+        <!-- Minesweeper -->
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <div id="flag-count">
+                            00
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <button id="start-again-button" class="start-again-button" onclick="startAgain()">
+                            <svg class="start-again-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 231.05"><defs><style>.cls-1,.cls-3{fill:#a00d95;}.cls-2{fill:#520254;}.cls-3{font-size:36px;font-family:ComicSansMS, Comic Sans MS;}.cls-4{fill:none;stroke:#520254;stroke-miterlimit:10;stroke-width:6px;}</style></defs><title>Play Again</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="cls-1" cx="80" cy="151.05" r="80"/><circle class="cls-2" cx="79.5" cy="150.55" r="70"/><polygon class="cls-1" points="61.49 151.91 70.97 161.39 58.34 174.02 48.86 164.54 39.38 174.02 26.75 161.39 36.23 151.91 26.75 142.43 39.38 129.8 48.86 139.28 58.34 129.8 70.97 142.43 61.49 151.91"/><polygon class="cls-1" points="124.02 151.91 133.5 161.39 120.87 174.02 111.39 164.54 101.91 174.02 89.28 161.39 98.76 151.91 89.28 142.43 101.91 129.8 111.39 139.28 120.87 129.8 133.5 142.43 124.02 151.91"/><text class="cls-3" transform="translate(66.49 177.08) rotate(90)">3</text><path class="cls-4" d="M85.14,98.57s-36.64-47.89-22-62.65S99.21,45.71,121,38.51s-9.17-13.91-14.1-27.12"/><polygon class="cls-1" points="108 4.16 112.17 0 112.76 5.52 118.92 4.31 115.7 9.08 121.5 11.28 115.7 13.47 118.92 18.25 112.76 17.03 112.17 22.55 108 18.39 103.83 22.55 103.24 17.03 97.08 18.25 100.3 13.47 94.5 11.28 100.3 9.08 97.08 4.31 103.24 5.52 103.83 0 108 4.16"/></g></g></svg>
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <div id="timer">
+                            00:00
+                        </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <button id="start-again-button" class="start-again-button" onclick="startAgain()">
-                        <svg class="start-again-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 231.05"><defs><style>.cls-1,.cls-3{fill:#a00d95;}.cls-2{fill:#520254;}.cls-3{font-size:36px;font-family:ComicSansMS, Comic Sans MS;}.cls-4{fill:none;stroke:#520254;stroke-miterlimit:10;stroke-width:6px;}</style></defs><title>Play Again</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="cls-1" cx="80" cy="151.05" r="80"/><circle class="cls-2" cx="79.5" cy="150.55" r="70"/><polygon class="cls-1" points="61.49 151.91 70.97 161.39 58.34 174.02 48.86 164.54 39.38 174.02 26.75 161.39 36.23 151.91 26.75 142.43 39.38 129.8 48.86 139.28 58.34 129.8 70.97 142.43 61.49 151.91"/><polygon class="cls-1" points="124.02 151.91 133.5 161.39 120.87 174.02 111.39 164.54 101.91 174.02 89.28 161.39 98.76 151.91 89.28 142.43 101.91 129.8 111.39 139.28 120.87 129.8 133.5 142.43 124.02 151.91"/><text class="cls-3" transform="translate(66.49 177.08) rotate(90)">3</text><path class="cls-4" d="M85.14,98.57s-36.64-47.89-22-62.65S99.21,45.71,121,38.51s-9.17-13.91-14.1-27.12"/><polygon class="cls-1" points="108 4.16 112.17 0 112.76 5.52 118.92 4.31 115.7 9.08 121.5 11.28 115.7 13.47 118.92 18.25 112.76 17.03 112.17 22.55 108 18.39 103.83 22.55 103.24 17.03 97.08 18.25 100.3 13.47 94.5 11.28 100.3 9.08 97.08 4.31 103.24 5.52 103.83 0 108 4.16"/></g></g></svg>
-                    </button>
-                </div>
-                <div class="col-4">
-                    <div id="timer">
-                        00:00
+                <div class="row">
+                    <div class="col">
+                        <div id="board" class="board dark">
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="fixed-bottom">
+            <div class="container">
             <div class="row">
                 <div class="col">
-                    <div id="board" class="board dark">
-                    </div>
+                    <a href="#">
+                        <button type="button"><i class="far fa-envelope-open"></i><br>
+                            Connect
+                        </button>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="https://github.com/almost-good" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/marja-marinic-6968501a6/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="fixed-bottom">
-        <div class="container">
-          <div class="row">
-              <div class="col">
-                  <a href="#">
-                    <button type="button"><i class="far fa-envelope-open"></i><br>
-                        Connect
-                    </button>
-                  </a>
-              </div>
-              <div class="col">
-                  <a href="https://github.com/almost-good" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-                  <a href="https://www.linkedin.com/in/marja-marinic-6968501a6/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="https://instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-              </div>
-          </div>
-        </div>
-    </footer>
+            </div>
+        </footer>
+    </div>
+    
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
