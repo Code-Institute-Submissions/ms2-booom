@@ -3,7 +3,7 @@
 
 const board = document.getElementById('board');
 
-let width = 15;
+let width = 7;
 let height = 10;
 let widthTimesHeight = width * height;
 let bombCount = 10;
@@ -20,13 +20,13 @@ let squares = [];
 /* -------------------------- Main -------------------------- */
 
 
-
+//https://stackoverflow.com/a/3540295
+if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        width = 7;
+        height= 10;
+}
 function bodyLoaded(){
-        //https://stackoverflow.com/a/3540295
-    if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        width = 5;
-        height=15;
-    }
+
     createBoard();
     startTimer();
     flagCounter();

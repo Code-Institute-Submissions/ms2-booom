@@ -4,6 +4,7 @@
 }
 
 
+
 /* GENERAL STYLES */
 
 * {
@@ -13,23 +14,25 @@
 
 body {
     padding-top: 62px;
+    padding-bottom: 100px;
 }
 
 .wrapper {
     overflow-x: hidden;
     position: relative;
-    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
 }
-
-
 
 
 
 /* HEADER */
 
+
 .navbar-layout {
-    margin-left: 15px;
-    margin-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: var(--test-light);
 }
 
 .logo {
@@ -39,10 +42,24 @@ body {
 
 
 
+/* REFRESH GAME/WIN/LOSE MODAL */
 
 
 
+/* FOOTER */
 
+
+.footer-styles{
+    height: 40px;
+    background-color: var(--test-light);
+}
+
+.align-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+}
 
 /*------------------------------------------- Mwawefoqddd ---*/
 body {
