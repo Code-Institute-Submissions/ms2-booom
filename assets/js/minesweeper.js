@@ -236,12 +236,14 @@ function isVictory() {
 
         // at every point also check if flag num is equal num of matched bombs with flags 
         if (bombFlag === bombCount && bombFlag === flags) {
-            alert('VICTORY'); //---------------------------------------------------------------------------------------------------------ALERT
+            victory();
+            flags = 0;
             gameOver = true;
+            console.log(gameOver);
         }
     }
 }
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 // Displays Game Over
 function isDefeat() {
     gameOver = true;
@@ -275,6 +277,9 @@ function appendAndInsert() {
 
 // Function to invoke New Game
 function startAgain() {
+    if(gameOver) 
+        refreshGame();
+
     // check if any of the squares are flagged or revealed
         // if they are, invoke click function
         // if they aren't, proceed with refreshing the game
@@ -297,6 +302,7 @@ function startAgain() {
 
 // Refresh the game
 function refreshGame() {
+    defaultSvg();
     gameOver = false;
     squares = [];
 
@@ -321,6 +327,26 @@ function defeat() {
     <h2>Defeat! ..Noob alert!</h2>
     <h4>Would you like to BOMB again?</h4>
     `;
+
+    gameModalContainer.classList.add('show');
+    
+}
+
+// Bring SVG icon back to default
+function defaultSvg() {
+    $('#start-again-button').remove('svg');
+    $('#start-again-button').html('<svg class="start-again-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 231.05"><defs><style>.cls-1,.cls-3{fill:#a00d95;}.cls-2{fill:#520254;}.cls-3{font-size:36px;font-family:ComicSansMS, Comic Sans MS;}.cls-4{fill:none;stroke:#520254;stroke-miterlimit:10;stroke-width:6px;}</style></defs><title>Play Again</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="cls-1" cx="80" cy="151.05" r="80"/><circle class="cls-2" cx="79.5" cy="150.55" r="70"/><polygon class="cls-1" points="61.49 151.91 70.97 161.39 58.34 174.02 48.86 164.54 39.38 174.02 26.75 161.39 36.23 151.91 26.75 142.43 39.38 129.8 48.86 139.28 58.34 129.8 70.97 142.43 61.49 151.91"/><polygon class="cls-1" points="124.02 151.91 133.5 161.39 120.87 174.02 111.39 164.54 101.91 174.02 89.28 161.39 98.76 151.91 89.28 142.43 101.91 129.8 111.39 139.28 120.87 129.8 133.5 142.43 124.02 151.91"/><text class="cls-3" transform="translate(66.49 177.08) rotate(90)">3</text><path class="cls-4" d="M85.14,98.57s-36.64-47.89-22-62.65S99.21,45.71,121,38.51s-9.17-13.91-14.1-27.12"/><polygon class="cls-1" points="108 4.16 112.17 0 112.76 5.52 118.92 4.31 115.7 9.08 121.5 11.28 115.7 13.47 118.92 18.25 112.76 17.03 112.17 22.55 108 18.39 103.83 22.55 103.24 17.03 97.08 18.25 100.3 13.47 94.5 11.28 100.3 9.08 97.08 4.31 103.24 5.52 103.83 0 108 4.16"/></g></g></svg>');
+}
+
+// Function for Victory message
+function victory() {
+    modalHtml.innerHTML = `
+    <h2>Victory!</h2>
+    <h4>Would you like to BOMB again?</h4>
+    `;
+
+    $('#start-again-button').remove('svg');
+    $('#start-again-button').html('<svg class="start-again-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 231.05"><defs><style>.cls-1{fill:#a00d95;}.cls-2{fill:#520254;}.cls-3,.cls-4{fill:none;stroke-miterlimit:10;}.cls-3{stroke:#520254;stroke-width:6px;}.cls-4{stroke:#a00d95;stroke-width:8px;}</style></defs><title>Victory Bomb</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="cls-1" cx="80" cy="151.05" r="80"/><circle class="cls-2" cx="79.5" cy="150.55" r="70"/><path class="cls-3" d="M85.14,98.57s-36.64-47.89-22-62.65S99.21,45.71,121,38.51s-9.17-13.91-14.1-27.12"/><polygon class="cls-1" points="111 4.16 115.17 0 115.76 5.52 121.92 4.31 118.7 9.08 124.5 11.28 118.7 13.47 121.92 18.25 115.76 17.03 115.17 22.55 111 18.39 106.83 22.55 106.24 17.03 100.08 18.25 103.3 13.47 97.5 11.28 103.3 9.08 100.08 4.31 106.24 5.52 106.83 0 111 4.16"/><path class="cls-4" d="M66.58,130.8c-1.07-1.16-10.39-11-24.34-9.63A29.08,29.08,0,0,0,24.5,130"/><path class="cls-4" d="M124.5,130.8c-1.06-1.16-10.39-11-24.33-9.63A29.12,29.12,0,0,0,82.42,130"/><path class="cls-4" d="M51.5,165.55c1.31,1.55,12.84,14.69,30.07,12.82,12.14-1.31,19.77-9.27,21.93-11.69"/></g></g></svg>');
 
     gameModalContainer.classList.add('show');
 }
