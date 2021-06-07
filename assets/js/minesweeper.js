@@ -477,10 +477,9 @@ function resetTimer() {
 
 
 /* -------------------------- Flag Count -------------------------- */
-
-
-
 let countFlags;
+
+
 
 // Add flag count to HTML
 function flagCounter() {
@@ -494,9 +493,6 @@ function flagCounter() {
 
 
 /* -------------------------- Remap Left & Right Click -------------------------- */
-
-
-
 let remapFlagActive = false;
 
 
@@ -509,3 +505,35 @@ function remapClick() {
         remapFlagActive = false;
     }
 }
+
+
+
+
+
+/* -------------------------- Connect Modal -------------------------- */
+const connectModalContainer = document.getElementById('connect-modal-container');
+let connectModal = document.getElementById('connect-modal');
+let body = $('body').html();
+
+function openConnectModal() {
+    let click = false;
+    connectModalContainer.classList.add('show');
+
+    addEventListener('click', function() {
+
+        console.log(click);
+        if(click)
+    {
+        connectModalContainer.classList.remove('show');
+    } else {
+        click = true;
+        return;
+    }
+    click = false
+        return;
+        //connectModalContainer.classList.remove('show');
+    })
+    ;
+    
+}
+

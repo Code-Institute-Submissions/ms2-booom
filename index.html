@@ -72,7 +72,28 @@
             </div>
         </div>
 
-        
+        <!-- Connect Modal -->
+        <div id ="connect-modal-container" class="connect-modal-container">
+            <div id="connect-modal" class="connect-modal">
+                <form method="POST" action="https://formdump.codeinstitute.net/">
+                    <label for="form-name">Name:</label>
+                    <input id="form-name" type="text" name="name" placeholder="Please enter your name!" required/>
+
+                    <label for="form-email">Email:</label>
+                    <input id="form-email" type="email" name="email" placeholder="Please enter your email!" required />
+
+                    <label for="messageinput">message:</label>
+                    <textarea id="messageinput" placeholder="PLEASE NOTE I DON'T WORK" required>
+                    </textarea>
+
+                    <div>
+                      <input type="submit" value="Send" />
+                      <input type="reset" value="Clear Form" />
+                    </div>
+                  </form>
+            </div>
+        </div>
+
         <!-- Minesweeper -->
         <section class="wrap-game">
             <div class="container game-container">
@@ -114,7 +135,7 @@
                 <div class="row">
                     <div class="col-5 align-footer">
                         <a href="#">
-                            <button class="connect-btn" type="button"><i class="far fa-envelope-open"></i>
+                            <button class="connect-btn" type="button" onclick="openConnectModal()"><i class="far fa-envelope-open"></i>
                                 Connect
                             </button>
                         </a>
