@@ -14,14 +14,14 @@
 }
 
 body {
-    overflow-x: hidden;
+    overflow: hidden;
     padding-top: 62px;
 }
 
 .wrapper {
     position: relative;
     overflow-x: hidden;
-    /*overflow-y: hidden;*/
+    overflow-y: hidden;
     padding-bottom: 40px;
     min-width: 100%;
     min-height: 100%;
@@ -106,6 +106,7 @@ body {
 
 .minesweeper {
     display: flex;
+    padding-top: 15px;
     align-items: center;
     justify-content: center;
 }
@@ -116,6 +117,7 @@ body {
     height: 100%;
 }
 
+/*-----------------------------------------------------------------------------border col*/
 .board-dark {
     background-color: var(--test-dark);
 }
@@ -162,6 +164,42 @@ body {
     font-size: 30px;
 }
 
+
+
+/* MEDIA QUERIES */
+
+        /* MOBILE PHONE VIEW QUERIES */
+
+        @media (max-width: 540px ), (min-height: 800px ) {
+            .wrapper {
+                padding-top: 25px;
+            }
+            .minesweeper {
+                padding-top: 35px;
+            }
+            .footer-styles {
+                margin-bottom: 25px;
+            }
+        }
+
+        /* se, ip6,7,8 etc*/
+        @media (max-width: 325px) {
+            .board {
+                margin-right: 0;
+                margin-left: 0;
+            }
+            .wrapper {
+
+                overflow-y: scroll;
+            }
+            .board div {
+                margin-right: 0;
+                margin-left: 0;
+                width: 40px;
+                height: 40px;
+            }
+        }
+
 /*------------------------------------------- Mwawefoqddd ---*/
 body {
     background-color: var(--test-light);
@@ -169,6 +207,21 @@ body {
 .light {
     background-color: var(--test-light);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*

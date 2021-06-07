@@ -4,7 +4,7 @@
 const board = document.getElementById('board');
 
 let width = 7;
-let height = 12;
+let height = 11;
 let widthTimesHeight = width * height;
 let bombCount = 10;
 let flags = 0;
@@ -23,7 +23,7 @@ let squares = [];
 //https://stackoverflow.com/a/3540295
 if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         width = 7;
-        height= 12;
+        height= 11;
 }
 function bodyLoaded(){
 
