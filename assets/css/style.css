@@ -14,17 +14,18 @@
 }
 
 body {
+    overflow-x: hidden;
     padding-top: 62px;
-    padding-bottom: 100px;
-    overflow: hidden;
 }
 
 .wrapper {
-    overflow-x: hidden;
-    overflow-y: hidden;
     position: relative;
+    overflow-x: hidden;
+    /*overflow-y: hidden;*/
+    padding-bottom: 40px;
     min-width: 100%;
     min-height: 100%;
+
 }
 
 
@@ -32,6 +33,7 @@ body {
 /* HEADER */
 
 
+/*---------------------------------------------------------------------------------bg col*/
 .navbar-layout {
     padding-left: 15px;
     padding-right: 15px;
@@ -42,7 +44,6 @@ body {
     width: 150px;
     height: 35px;
 }
-
 
 .settings-btn {
     border-style: none;
@@ -62,6 +63,7 @@ body {
     padding-right: 15px;
 }
 
+/*----------------------------------------------------------------------bg-col*/
 .start-again-button {
     display: flex;
     margin-left: auto;
@@ -106,20 +108,23 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: 40px;
 }
 
 .board {
     display: flex;
     flex-wrap: wrap;
-    width: 750px;
-    height: 500px;
+    height: 100%;
 }
 
+.board-dark {
+    background-color: var(--test-dark);
+}
+
+/*-----------------------------------------------------------------------------border col*/
 .board div {
     width: 50px;
     height: 50px;
-    border: 2px solid var(--test-light);
+    border: 2px solid rgb(196, 93, 93);
 }
 
 
@@ -128,17 +133,18 @@ body {
 
 
 .footer-styles{
-    height: 40px;
     padding-left: 10px;
     padding-right: 10px;
+    height: 40px;
     background-color: var(--test-light);
+    opacity: 0.5;
 }
 
 .align-footer {
     display: flex;
+    height: 40px;
     align-items: center;
     justify-content: center;
-    height: 40px;
 }
 
 .connect-btn {
@@ -147,8 +153,8 @@ body {
 }
 
 .social-links {
-    font-size: 20px;
     padding-left: 7px;
+    font-size: 20px;
 }
 
 .volume-icon {
@@ -163,9 +169,7 @@ body {
 .light {
     background-color: var(--test-light);
 }
-.dark {
-    background-color: var(--test-dark);
-}
+
 
 /*
 .hidden {
