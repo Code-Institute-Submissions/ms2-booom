@@ -58,7 +58,13 @@ function createBoard() {
         squares.push(square);
 
         // invoke left click event
+        
         square.addEventListener('click', function(e) {
+            if (remapFlagActive) {
+                // check if remapClick function is active
+                addFlagsToSquare(square);
+                return;
+            }
             click(square);
         })
 
@@ -193,6 +199,10 @@ function newSquare(newId) {
 
 // Left click function
 function click(square) {
+    // check if the right click is flag
+    //if(remapFlagActive)
+       // return;
+
     // check if it's first click to start timer
     firstClick++;
     if(firstClick === 1) {
@@ -477,4 +487,25 @@ function flagCounter() {
     countFlags = bombCount;
 
     document.getElementById("flag-count").innerHTML = countFlags;
+}
+
+
+
+
+
+/* -------------------------- Remap Left & Right Click -------------------------- */
+
+
+
+let remapFlagActive = false;
+
+
+
+// Function for remapping click to flag on flag button click event
+function remapClick() {
+    if (!remapFlagActive) {
+        remapFlagActive = true;
+    } else {
+        remapFlagActive = false;
+    }
 }
