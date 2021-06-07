@@ -3,6 +3,15 @@
     --test-dark: rgb(112, 14, 60);
 }
 
+
+
+/* GENERAL STYLES */
+body {
+    overflow: hidden;
+}
+
+
+
 body {
     background-color: var(--test-light);
 }
