@@ -23,7 +23,7 @@ let squares = [];
 
 function bodyLoaded(){
     createBoard();
-    start_timer();
+    startTimer();
 }
 
 
@@ -187,6 +187,11 @@ function newSquare(newId) {
 
 // Left click function
 function click(square) {
+    // check if it's first click to start timer
+    firstClick++;
+    if(firstClick === 1) {
+        startTimer();
+    }
     // removes left click optionality if the game is over
     if (gameOver) 
         return;
@@ -326,7 +331,7 @@ function startAgain() {
     for (let i = 0; i < squares.length; i++) {
         if (squares[i].classList.contains('revealed-square') || squares[i].classList.contains('flag')) {
             gameModalContainer.classList.add('show');
-            
+
             modalHtml.innerHTML = `
                 <h2>Bomb again?</h2>
                 <p>All progress will be lost!</p>
@@ -342,6 +347,8 @@ function startAgain() {
 
 // Refresh the game
 function refreshGame() {
+    resetTimer();
+
     defaultSvg();
     gameOver = false;
     squares = [];
@@ -395,31 +402,48 @@ function defaultSvg() {
 
 
 /* -------------------------- Timer -------------------------- */
+let firstClick = 0;
 
 
 // Function that counts passed time from start game 
-function start_timer() {
-    let timer = document.getElementById('timer').innerHTML;
-    let separateTime = timer.split(":");
-    let min = separateTime[0];
-    let sec = separateTime[1];
+function startTimer() {
+    if (firstClick) {
 
-    if(sec == 59) {
-        min++;
-        sec = 0;
-
-        if(sec == 0) 
-            sec = "0" + sec;
-        if(min < 10) 
-            min = "0" + min;
-    } else {
-        sec++;
-
-        if(sec < 10) 
-            sec = "0" + sec;
-    }
-
-    document.getElementById("timer").innerHTML = min + ":" + sec;
-    setTimeout(start_timer, 1000);
     
+        let timer = document.getElementById('timer').innerHTML;
+        let separateTime = timer.split(":");
+        let min = separateTime[0];
+        let sec = separateTime[1];
+
+        if(sec == 59) {
+            min++;
+            sec = 0;
+
+            if(sec == 0) 
+                sec = "0" + sec;
+            if(min < 10) 
+                min = "0" + min;
+        } else {
+            sec++;
+
+            if(sec < 10) 
+                sec = "0" + sec;
+        }
+
+        document.getElementById("timer").innerHTML = min + ":" + sec;
+        setTimeout(startTimer, 1000);
+    }
+}
+/*function pause() {
+    if (timerActive == false) {
+        timerActive = true;
+        startTimer();
+    } else {
+        timerActive = false;
+    }
+}*/
+
+function resetTimer() {
+    document.getElementById("timer").innerHTML = "00" + ":" + "00";
+    firstClick = 0;
 }
