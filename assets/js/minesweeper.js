@@ -3,8 +3,8 @@
 
 const board = document.getElementById('board');
 
-let width = 7;
-let height = 11;
+let width = 8;
+let height = 15;
 let widthTimesHeight = width * height;
 let bombCount = 10;
 let flags = 0;
@@ -21,12 +21,12 @@ let squares = [];
 
 
 //https://stackoverflow.com/a/3540295
-if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        width = 7;
-        height= 11;
-}
-function bodyLoaded(){
 
+function bodyLoaded(){
+    if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        width = 8;
+        height = 11;
+    }
     createBoard();
     startTimer();
     flagCounter();
@@ -74,12 +74,12 @@ function createBoard() {
 
 // Add dynamic board grid
 function addBoardGrid() {
-    board.style.width = width * 50 + "px";
-    board.style.height = height * 50 + "px";
+    board.style.width = width * 40 + "px";
+    board.style.height = height * 40 + "px";
 
     board.style.display = "grid";
-    board.style.gridTemplateColumns = "repeat("+ width +", 50px)";
-    board.style.gridTemplateRows = "repeat("+ height +", 50px)";
+    board.style.gridTemplateColumns = "repeat("+ width +", 40px)";
+    board.style.gridTemplateRows = "repeat("+ height +", 40px)";
 }
 
 
