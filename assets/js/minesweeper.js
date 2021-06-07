@@ -24,6 +24,7 @@ let squares = [];
 function bodyLoaded(){
     createBoard();
     startTimer();
+    flagCounter();
 }
 
 
@@ -248,6 +249,10 @@ function addFlag(square) {
     square.classList.add('flag');
     square.innerHTML = '<i class="fab fa-font-awesome-flag"></i>';
     flags ++;
+
+    // flags for flag counter button
+    countFlags--;
+    flagCounter();
 }
 
 // Remove Flag function
@@ -255,6 +260,10 @@ function removeFlag(square) {
     square.classList.remove('flag');
     square.innerHTML = '';
     flags --;
+
+    // flags for flag counter button
+    countFlags++;
+    flagCounter();
 }
 
 
@@ -446,4 +455,21 @@ function startTimer() {
 function resetTimer() {
     document.getElementById("timer").innerHTML = "00" + ":" + "00";
     firstClick = 0;
+}
+
+
+
+
+
+/* -------------------------- Flag Count -------------------------- */
+
+
+
+let countFlags;
+
+// Add flag count to HTML
+function flagCounter() {
+    countFlags = bombCount;
+
+    document.getElementById("flag-count").innerHTML = countFlags;
 }
