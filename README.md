@@ -14,8 +14,6 @@ Search for mines using neighbouring fields as indicators where the mines are, fi
 1. [User Experience (UX)](#user-experience-UX)
     - [Strategy](#strategy)
     - [User Stories](#user-stories)
-    - [Scope](#scope)
-    - [Structure](#structure)
     - [Skeleton](#skeleton)
 2. [Design](#design)
     - [Typography](#typography)
@@ -27,7 +25,6 @@ Search for mines using neighbouring fields as indicators where the mines are, fi
 5. [Testing](#testing)
     - [Bugs](#bugs)
 6. [Deployment](#deployment)
-7. [Credits](#credits)
 
 </details>
 
@@ -61,10 +58,6 @@ Minesweeper BOOOM! application follows the principal "simplicity is the key" and
     - I want to select custom game, so I can play for fun, without the scoring pressure.
     - I want to be able to follow the game on social media so I can immerse myself with Minesweeper community.
 
-## Scope
-
-## Structure
-
 ## Skeleton
 - ### [Landing Page](assets/doc/wireframes/landing-page.png)
     <img src="./assets/doc/wireframes/landing-page.png">
@@ -75,6 +68,8 @@ Minesweeper BOOOM! application follows the principal "simplicity is the key" and
     - [Get in Touch](assets/doc/wireframes/get-in-touch.png)
     - [Win](assets/doc/wireframes/win.png)
     - [Lose](assets/doc/wireframes/lose.png)
+
+    - #### Please note that end product may end up looking different than initial idea
 # Design
 ## Typography
 - No typography has been implemented. Base style has been extentively styled.
@@ -138,5 +133,18 @@ Please note, some of the features are still in progress, due to creator's slow p
 ## Bugs
 - Code needs cleaning and refactoring as there are number of issues.
 # Deployment
-
-# Credits
+- ## Github pages
+    - Repository
+    - Settings
+    - Left menu have section "Pages"
+    - Open Github Pages
+    - Select the source dropdown menu, the main branch option
+- ## Local deployment
+    - Repository
+    - Click the button "code"
+    - Select the "HTTPS" option
+    - Copy the URL
+    - Open your Terminal
+    -  Create a directory for storing repository
+    - Type "git clone" and paste the URL in that you previously copied
+    - Press enter to create local clone repository
