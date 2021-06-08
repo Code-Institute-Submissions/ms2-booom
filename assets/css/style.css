@@ -332,6 +332,22 @@ footer button:hover {
 }
 
 
+/* SETTINGS MODAL */
+
+#settings-modal h4 {
+    margin-top: 50px;
+    text-align: center;
+    font-weight: 800;
+    padding-bottom: 20px;
+}
+
+#settings-modal button {
+    display: block;
+    width: 150px;
+    padding: 5px 10px;
+    vertical-align: middle;
+    margin-left: 25%;
+}
 
 /*** MEDIA QUERIES ***/
 

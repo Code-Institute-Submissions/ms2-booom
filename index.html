@@ -92,18 +92,10 @@
     <!-- Settings modal -->
     <div id="settings-modal" class="game-modal-container" onclick="closeModal()">
         <div class="game-modal">
-            <h4>Settings</h4>
-            <button onclick="chooseDifficulty('easy')">Easy</button>
-            <button onclick="chooseDifficulty('medium')">Medium</button>
-            <button onclick="chooseDifficulty('hard')">Hard</button>
-            <button onclick="chooseDifficulty('custom')">Custom</button>
-            <div class="custom-mode">
-                <p>*Custom games are not scored</p>
-                <input type="number" id="width" />
-                <input type="number" id="height" />
-                <input type="number" id="bomb" />
-                <button onclick="createCustomGame()">Custom</button>
-            </div>
+            <h4>Choose difficulty!</h4>
+            <button onclick="chooseDifficulty('easy')">Noob</button>
+            <button onclick="chooseDifficulty('medium')">You can do it</button>
+            <button onclick="chooseDifficulty('hard')">Boss</button>
         </div>
     </div>
 

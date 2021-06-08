@@ -6,7 +6,7 @@ const board = document.getElementById('board');
 let width=12;
 let height=12;
 let widthTimesHeight;
-let bombCount=10;
+let bombCount=30;
 let flags = 0;
 
 let gameOver = false;
@@ -336,7 +336,6 @@ function isVictory() {
         // at every point also check if flag num is equal num of matched bombs with flags 
         if (bombFlag === bombCount && bombFlag === flags) {
             victory();
-            remapClick();
             flags = 0;
             gameOver = true; 
             calculateScore();              
@@ -348,7 +347,6 @@ function isVictory() {
 function isDefeat() {
     gameOver = true;
     flags = 0;
-    remapClick();
     displayBombs();
     defeat();
 }
@@ -380,49 +378,51 @@ const settingsModal = document.getElementById('settings-modal');
 function openSettings() {
   document.getElementById("toggleMobileMenu").classList.remove("show");  
     settingsModal.classList.add('show');   
+    closeModal(settingsModal);
 }
 
 
 function chooseDifficulty(difficulty) { 
-    switch (difficulty) {
-        case 'easy':
-            width=8;
-            height=8;
-            bombCount=5;
-            break;
-        case 'medium':
-            width=12;
+    if($(window).width() < 670) {
+        switch (difficulty) {
+            case 'easy':
+                bombCount=10;
+                break;
+            case 'medium':
+                bombCount=20;
+                break;
+            case 'hard':
+                bombCount=35;
+                break;
+        }
+    } else {
+        switch (difficulty) {
+            case 'easy':
+             width=8;
+             height=8;
+             bombCount=10;
+             break;
+            case 'medium':
+             width=12;
             height=12;
-            bombCount=10;
+            bombCount=30;
             break;
-        case 'hard':
+            case 'hard':
             width=15;
             height=15;
-            bombCount=15;
+            bombCount=50;
             break;
-        case 'custom':
-            //toggle visibility
-            break;
-    }
-    console.log(width, height);
-    //close modal
-  
 
-    if(difficulty !=='custom'){
+    }
+    }
+
+
         settingsModal.classList.remove('show');
         createBoard();
-    }
 
 }
 
-function createCustomGame(){
-width=document.getElementById("width").value;
-height=document.getElementById("height").value;
-bombCount=document.getElementById("bomb").value;
-console.log(bombCount);
-    settingsModal.classList.remove('show');
-    createBoard();
-}
+
 
 
 appendAndInsert();
@@ -576,7 +576,6 @@ let countFlags;
 // Add flag count to HTML
 function flagCounter() {
   
-    console.log('flag counter je pozvan');
 
     document.getElementById("flag-count").innerHTML = countFlags;
 }
@@ -611,24 +610,24 @@ let connectModal = document.getElementById('connect-modal');
 let body = $('body').html();
 
 function openConnectModal() {
-    let click = false;
+    
     connectModalContainer.classList.add('show');
 
-    addEventListener('click', function() {
+    closeModal(connectModalContainer);
+    
+}
 
-        console.log(click);
+function closeModal(modalToClose) {
+    let click = false;
+    addEventListener('click', function() {
         if(click)
     {
-        connectModalContainer.classList.remove('show');
+        modalToClose.classList.remove('show');
     } else {
         click = true;
         return;
     }
     click = false
         return;
-        //connectModalContainer.classList.remove('show');
-    })
-    ;
-    
+    });
 }
-
