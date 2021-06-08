@@ -128,7 +128,20 @@ Please note, some of the features are still in progress, due to creator's slow p
 - ### Audio
     Audio is feature that can elevate game experience. It should be implemented.
 # Technologies
-
+- ### HTML
+- ### CSS
+- ### JavaScript
+- ### Bootstrap
+- ### JQuery
+- ### Popper.js
+- ### Fontawesome
+- ### Balsamiq
+- ### Am I responsive?
+- ### Github
+- ### Git
+- ### Visual Studio Code
+- ### Illustrator 
+- ### Adobe Photoshop
 # Testing
 
 ## Tests
