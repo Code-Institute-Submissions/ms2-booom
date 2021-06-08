@@ -5,7 +5,7 @@ Minesweeper BOOOM! website focuses on recreating classic Minesweeper game with m
 Minesweeper - a game that consists of "mine sweeping" - is one of early games introduced to Windows, and, in fact was part of the standard Windows 3.1 edition. 
 Search for mines using neighbouring fields as indicators where the mines are, find them all and win the game!
 
-![Responsive](assets/doc/img/img.jpg)
+![Responsive](https://github.com/almost-good/ms2-booom/blob/669d3d25692b9c242dc0a5792b17ce172182a495/assets/doc/img/img.jpg)
 
 # Table of content: 
 <details>
@@ -28,7 +28,6 @@ Search for mines using neighbouring fields as indicators where the mines are, fi
     - [Features Left to Implement](#features-left-to-implement)
 4. [Technologies](#technologies)
 5. [Testing](#testing)
-    - [Tests](#tests)
     - [Bugs](#bugs)
 6. [Deployment](#deployment)
 7. [Credits](#credits)
@@ -128,26 +127,25 @@ Please note, some of the features are still in progress, due to creator's slow p
 - ### Audio
     Audio is feature that can elevate game experience. It should be implemented.
 # Technologies
-- ### HTML
-- ### CSS
-- ### JavaScript
-- ### Bootstrap
-- ### JQuery
-- ### Popper.js
-- ### Fontawesome
-- ### Balsamiq
-- ### Am I responsive?
-- ### Github
-- ### Git
-- ### Visual Studio Code
-- ### Illustrator 
-- ### Adobe Photoshop
+- HTML
+- CSS
+- JavaScript
+- Bootstrap
+- JQuery
+- Popper.js
+- Fontawesome
+- Balsamiq
+- Am I responsive?
+- Github
+- Git
+- Visual Studio Code
+- Illustrator 
+- Adobe Photoshop
 # Testing
-
-## Tests
-
+- For testing responsiveness, styling and interactivity Chrome Developer Tools was used.
+- Site has been tested on owner's phone.
 ## Bugs
-
+- Code needs cleaning and refactoring as there are number of issues.
 # Deployment
 
 # Credits
