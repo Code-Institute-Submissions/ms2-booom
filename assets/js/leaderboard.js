@@ -34,7 +34,11 @@ function addTableData(data) {
 //https://www.w3schools.com/js/js_cookies.asp
 function addToLeaderboard() {
     getScore();
-    let user = { score: points, difficulty: difficultyScore, date: new Date() };
+    let user = {
+        score: points,
+        difficulty: difficultyScore,
+        date: new Date()
+    };
     //limit to 10 scores   
     score.slice(10, 1);
     score.push(user);
@@ -82,14 +86,11 @@ function calculateScore() {
 function calculateForMin(min) {
     if (min <= 5) {
         pointsSubtract += 1;
-    }
-    else if (min <= 10) {
+    } else if (min <= 10) {
         pointsSubtract += 5;
-    }
-    else if (min <= 15) {
+    } else if (min <= 15) {
         pointsSubtract += 10;
-    }
-    else if (min <= 30) {
+    } else if (min <= 30) {
         pointsSubtract += 20;
     }
 

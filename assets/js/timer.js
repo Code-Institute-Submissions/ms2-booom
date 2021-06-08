@@ -32,6 +32,7 @@ function startTimer() {
         timeout = setTimeout(startTimer, 1000);
     }
 }
+
 function pauseTimer() {
     clearTimeout(timeout);
 }

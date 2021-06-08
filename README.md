@@ -5,6 +5,8 @@ Minesweeper BOOOM! website focuses on recreating classic Minesweeper game with m
 Minesweeper - a game that consists of "mine sweeping" - is one of early games introduced to Windows, and, in fact was part of the standard Windows 3.1 edition. 
 Search for mines using neighbouring fields as indicators where the mines are, find them all and win the game!
 
+![Website Responsiveness](assets/doc/img/responsive.png)
+
 # Table of content: 
 <details>
     <summary>Expand!</summary>
@@ -90,11 +92,41 @@ Minesweeper BOOOM! application follows the principal "simplicity is the key" and
 ## Styling
 
 # Features
+Please note, some of the features are still in progress, due to creator's slow progress. Creator is new to coding.
 
 ## Features Implemented
+- ### Minesweeper game
+    Functional Minesweeper game is made.
+    - Reveal field
+    Reveal field using right click.
+    - Flag field
+    Flag field using right or left click, depending on user preferences.
+- ### Minesweeper controls
+    Minesweeper controls is a bundle of functionalities that user can manipulate, and which are, of utmost importance for smooth gameplay. 
+    - Start New Game
+    Gives user an option to restart the game, or just reset the gaming board.
+    - Timer
+    User can track time, and thus see how long is their gameplay.
+    - Flag Counter
+    User can track how many bombs they have to find, or see if they flagged wrong fields.
+    - Flag Click Remapper
+    Useful for mobile device, represents right click, and switches from state to state dynamically.
+- ### Settings
+    User can choose between 3 different difficulty levels, for larger screen devices those levels provide different Minesweeper board sizes.
+- ### Social links
+    User can follow creator on number of different social networks.
+- ### Win/Lose outcome
+    Depending on the user ability to solve the game, they will be awarded with Win or Lose status.
 
 ## Features Left to Implement
-
+- ### Connect
+    Connect feature is still in progress, there are stylings that needs to be added, as well as connecting the form to emailjs.
+- ### Leaderboard 
+    Leaderboard is still in progress, there are stylings that needs to be added, as well as fixing modal function.
+- ### Tutiral
+    Tutorial feature should help New Players with general knowledge about how to play the game. It should be implemented.
+- ### Audio
+    Audio is feature that can elevate game experience. It should be implemented.
 # Technologies
 
 # Testing

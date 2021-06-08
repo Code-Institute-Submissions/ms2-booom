@@ -3,10 +3,10 @@
 
 const board = document.getElementById('board');
 
-let width=12;
-let height=12;
+let width = 12;
+let height = 12;
 let widthTimesHeight;
-let bombCount=30;
+let bombCount = 30;
 let flags = 0;
 
 let gameOver = false;
@@ -23,25 +23,25 @@ let squares = [];
 //https://stackoverflow.com/a/3540295
 
 function bodyLoaded() {
-    if($(window).width() < 670) {
+    if ($(window).width() < 670) {
         width = 12;
         height = 12;
-        bombCount=10;
-        if($(window).width() <500){
-            width=10;
-            height=10;
+        bombCount = 10;
+        if ($(window).width() < 500) {
+            width = 10;
+            height = 10;
         }
-        if($(window).width() <400){
-            width=8;
-            height=8;
+        if ($(window).width() < 400) {
+            width = 8;
+            height = 8;
         }
-        if($(window).width() <330){
-            width=6;
-            height=5;
+        if ($(window).width() < 330) {
+            width = 6;
+            height = 5;
         }
-        
-    }   
-    
+
+    }
+
     createBoard();
     startTimer();
 
@@ -81,7 +81,7 @@ function createBoard() {
         squares.push(square);
 
         // invoke left click event
-        square.addEventListener('click', function(e) {
+        square.addEventListener('click', function (e) {
             if (remapFlagActive) {
                 // check if remapClick function is active
                 addFlagsToSquare(square);
@@ -150,7 +150,7 @@ function numOfBombsSurroundingEmpty() {
                 total++;
             if (i < (widthTimesHeight - width) && !leftBorder && squares[i - 1 + width].classList.contains('bomb'))
                 total++;
-                //todo
+            //todo
             if (i < (widthTimesHeight - width - 1) && !rightBorder && squares[i + 1 + width].classList.contains('bomb'))
                 total++;
             if (i < (widthTimesHeight - width) && squares[i + width].classList.contains('bomb'))
@@ -337,8 +337,8 @@ function isVictory() {
         if (bombFlag === bombCount && bombFlag === flags) {
             victory();
             flags = 0;
-            gameOver = true; 
-            calculateScore();              
+            gameOver = true;
+            calculateScore();
         }
     }
 }
@@ -376,54 +376,54 @@ let settingsModal = document.getElementById('settings-modal');
 
 // Settings
 function openSettings() {
-    
 
-    settingsModal.classList.add('show'); 
+
+    settingsModal.classList.add('show');
     let toggle = document.getElementById("toggleMobileMenu").add('show');
-    closeModal(toggle);  
+    closeModal(toggle);
     closeModal(settingsModal);
 
-    
+
 }
 
 
-function chooseDifficulty(difficulty) { 
-    if($(window).width() < 670) {
+function chooseDifficulty(difficulty) {
+    if ($(window).width() < 670) {
         switch (difficulty) {
             case 'easy':
-                bombCount=10;
+                bombCount = 10;
                 break;
             case 'medium':
-                bombCount=20;
+                bombCount = 20;
                 break;
             case 'hard':
-                bombCount=35;
+                bombCount = 35;
                 break;
         }
     } else {
         switch (difficulty) {
             case 'easy':
-             width=8;
-             height=8;
-             bombCount=10;
-             break;
+                width = 8;
+                height = 8;
+                bombCount = 10;
+                break;
             case 'medium':
-             width=12;
-            height=12;
-            bombCount=30;
-            break;
+                width = 12;
+                height = 12;
+                bombCount = 30;
+                break;
             case 'hard':
-            width=15;
-            height=15;
-            bombCount=50;
-            break;
+                width = 15;
+                height = 15;
+                bombCount = 50;
+                break;
 
+        }
     }
-    }
 
 
-        settingsModal.classList.remove('show');
-        createBoard();
+    settingsModal.classList.remove('show');
+    createBoard();
 
 }
 
@@ -469,7 +469,7 @@ function refreshGame() {
     resetTimer();
 
     defaultSvg();
-    
+
     createBoard();
 
     flags = 0;
@@ -580,7 +580,7 @@ let countFlags;
 
 // Add flag count to HTML
 function flagCounter() {
-  
+
 
     document.getElementById("flag-count").innerHTML = countFlags;
 }
@@ -594,12 +594,11 @@ let remapFlagActive = false;
 // Function for remapping click to flag on flag button click event
 function remapClick() {
     if (!remapFlagActive) {
-        document.getElementById("remap-click").innerHTML =`
-        <i class="far fa-flag"></i>`
-        ;
+        document.getElementById("remap-click").innerHTML = `
+        <i class="far fa-flag"></i>`;
         remapFlagActive = true;
     } else {
-        document.getElementById("remap-click").innerHTML =`
+        document.getElementById("remap-click").innerHTML = `
             <i class="fas fa-bomb"></i>`;
         remapFlagActive = false;
     }
@@ -615,24 +614,23 @@ let connectModal = document.getElementById('connect-modal');
 let body = $('body').html();
 
 function openConnectModal() {
-    
+
     connectModalContainer.classList.add('show');
 
     closesModal(connectModalContainer);
-    
+
 }
 
 function closesModal(modalToClose) {
     let click = false;
-    addEventListener('click', function() {
-        if(click)
-    {
-        modalToClose.classList.remove('show');
-    } else {
-        click = true;
-        return;
-    }
-    click = false
+    addEventListener('click', function () {
+        if (click) {
+            modalToClose.classList.remove('show');
+        } else {
+            click = true;
+            return;
+        }
+        click = false
         return;
     });
 }
