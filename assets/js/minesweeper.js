@@ -37,7 +37,7 @@ function bodyLoaded() {
         }
         if($(window).width() <330){
             width=6;
-            height=6;
+            height=5;
         }
         
     }   
@@ -616,3 +616,4 @@ function openConnectModal() {
     ;
     
 }
+

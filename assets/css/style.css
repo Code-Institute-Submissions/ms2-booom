@@ -8,6 +8,7 @@
     --light-pink: #da3ccf;
     --purple: #520254;
     --start-new-game-btn: #2a373ffa;
+    --dark-gray: #1a2227fa;
     --border: #a8a7a59f;
 }
 
@@ -30,17 +31,14 @@ body {
 /*** HEADER ***/
 
 
-#toggleMobileMenu {
-    position: absolute;
-    top: 50px;
-    right: 50px;
-}
 
 /*-------------------------------------------------------------------------------------------------------------*/
 .navbar-layout {
     padding-left: 15px;
     padding-right: 15px;
-    background-color: var(--test-light);
+    background-color: var(--start-new-game-btn);
+    border: 2px outset var(--border); 
+    border-radius: 5px;
 }
 
 .logo {
@@ -54,6 +52,41 @@ body {
 
 .settings-icon {
     font-size: 35px;
+    -webkit-text-stroke: 2px var(--light-pink);
+}
+
+.settings-icon:hover {
+    -webkit-text-stroke: 2px var(--modal-bg);
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+#toggleMobileMenu {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: var(--modal-bg);
+    border: 2px outset var(--border);
+    border-radius: 2px;
+}
+
+#toggleMobileMenu button {
+    padding: 5px 20px;
+    background-color: var(--start-new-game-btn);
+    border: 2px outset var(--border);
+    border-radius: 2px;
+    color: var(--light-pink);
+    font-weight: 600;
+}
+
+#toggleMobileMenu button:hover {
+    color: var(--modal-bg);
 }
 
 /* GAME CONTROLS */
@@ -77,6 +110,11 @@ body {
     border-radius: 50%;
 }
 
+.start-again-button:hover,
+.flag-btn-size:hover {
+    border: 2px outset var(--modal-bg);
+}
+
 .start-again-svg {
     margin-top: 7px;
     width: 40px;
@@ -93,7 +131,7 @@ body {
     background-color: var(--start-new-game-btn);
     border: 1px outset var(--border);
     border-radius: 5px;
-    color: var(--purple);
+    color: var(--dark-gray);
     font-weight: 900;
     -webkit-text-stroke: 2px var(--light-pink);
 }
@@ -153,35 +191,33 @@ body {
 /*** FOOTER ***/
 
 
-/*---------------------------------------------------------------------------------------------------------------*/
+
 footer {
-    height: 40px !important;
+    height: 60px !important;
+    margin-bottom: 15px;
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
-    background-color: var(--test-light);
-    opacity: 0.5;
-    margin-bottom: 15px;
+    background-color: var(--start-new-game-btn);
+    border: 2px outset var(--border);
+    border-left: none;
+    border-right: none;
+    opacity: 1;
 }
 
 /*------------------------------------------------------------------------------------------------------------*/
 footer a {
-    color: var(--test-dark);
+    color: var(--light-pink);
     font-size: 20px;
 }
 footer i {
-    color: var(--test-dark);
+    color: var(--light-pink);
     font-size: 30px;
 }
-/*------------------------------------------------------------------------------------------------------------*/
-footer a:active,
-footer a:visited {
-    color: var(--test-dark);
-}
 
-/*------------------------------------------------------------------------------------------------------------*/
-footer a:hover {
-    color: var(--test-dark);
+footer a > i:hover,
+footer button:hover {
+    color: var(--modal-bg);
 }
 
 .connect-btn {
@@ -189,6 +225,9 @@ footer a:hover {
     padding-bottom: 5px;
     padding-left: 5px;
     padding-right: 5px;
+    background-color: var(--start-new-game-btn);
+    color: var(--light-pink);
+    font-weight: 600;
 }
 
 /*** MODALS ***/
@@ -221,7 +260,7 @@ footer a:hover {
     width: 300px;
     height: 350px;
     background-color: var(--modal-bg);
-    border: 5px groove var(--border);
+    border: 5px outset var(--border);
     border-radius: 2px;
 }
 
@@ -249,9 +288,13 @@ footer a:hover {
     margin-top: 20px;
     width: 100px;
     background-color: var(--start-new-game-btn);
-    border: 2px groove var(--border);
+    border: 2px outset var(--border);
     color: var(--light-pink);
     font-weight: 700;
+}
+
+.game-modal button:hover {
+    color: var(--modal-bg);
 }
 
 .game-modal button:first-of-type {
@@ -302,10 +345,11 @@ footer a:hover {
     footer i {
         font-size: 40px;
     }
+
 }
 
 /* SMALL VIEW QUERIES */
-@media (min-width: 576px) {
+@media (min-width: 580px) {
     .full-game-container {
         padding-left: 0;
         padding-right: 0;
@@ -345,6 +389,10 @@ footer a:hover {
 
     .social-links a:last-child {
         margin-right: 75px;
+    }
+    #toggleMobileMenu {
+        top: 100px;
+        right: 0px;
     }
 }
 
