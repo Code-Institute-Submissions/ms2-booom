@@ -14,34 +14,9 @@
 }
 
 body {
+    height: 100%; 
     overflow: hidden;
 }
-
-
-/* SCROLLBAR */
-
-
-/* https://www.digitalocean.com/community/tutorials/css-scrollbars */
-/* Works on Firefox */
-/* * {
-    scrollbar-width: thin;
-    scrollbar-color:  var(--test-dark) var(--test-light);
-  } */
-
-/* Works on Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-    width: 6px;
-}
-
-*::-webkit-scrollbar-track {
-    background: var(--test-light);
-}
-
-*::-webkit-scrollbar-thumb {
-    background-color: var(--test-dark);
-    border-radius: 10px;
-}
-
 
 
 /* HEADER */
@@ -72,15 +47,6 @@ body {
 .settings-icon {
     font-size: 35px;
 }
-
-.container {
-    padding: 0 !important;
-    height: calc(100% - 40px - 45px);
-    max-height: calc(100% - 40px - 45px);
-    overflow: hidden;
-}
-
-
 
 /* REFRESH GAME/WIN/LOSE MODAL */
 
@@ -140,7 +106,7 @@ body {
 
 .game-container .row:nth-last-of-type() {
     height: 80vh;
-    overflow: scroll;
+    overflow-x: hidden!important;
 }
 
 .minesweeper {
