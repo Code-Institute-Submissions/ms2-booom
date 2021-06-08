@@ -372,13 +372,18 @@ const gameModalContainer = document.getElementById('game-modal-container');
 let gameModal = document.getElementById('game-modal');
 const playAgainBtn = document.getElementById('play-again-btn');
 let modalHtml = document.createElement('div');
-const settingsModal = document.getElementById('settings-modal');
+let settingsModal = document.getElementById('settings-modal');
 
 // Settings
 function openSettings() {
-  document.getElementById("toggleMobileMenu").classList.remove("show");  
-    settingsModal.classList.add('show');   
+    
+
+    settingsModal.classList.add('show'); 
+    let toggle = document.getElementById("toggleMobileMenu").add('show');
+    closeModal(toggle);  
     closeModal(settingsModal);
+
+    
 }
 
 
@@ -613,11 +618,11 @@ function openConnectModal() {
     
     connectModalContainer.classList.add('show');
 
-    closeModal(connectModalContainer);
+    closesModal(connectModalContainer);
     
 }
 
-function closeModal(modalToClose) {
+function closesModal(modalToClose) {
     let click = false;
     addEventListener('click', function() {
         if(click)
