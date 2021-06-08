@@ -5,7 +5,7 @@ Minesweeper BOOOM! website focuses on recreating classic Minesweeper game with m
 Minesweeper - a game that consists of "mine sweeping" - is one of early games introduced to Windows, and, in fact was part of the standard Windows 3.1 edition. 
 Search for mines using neighbouring fields as indicators where the mines are, find them all and win the game!
 
-![Responsive](https://github.com/almost-good/ms2-booom/blob/669d3d25692b9c242dc0a5792b17ce172182a495/assets/doc/img/img.jpg)
+<img src="./assets/doc/img/img.jpg">
 
 # Table of content: 
 <details>
@@ -18,11 +18,8 @@ Search for mines using neighbouring fields as indicators where the mines are, fi
     - [Structure](#structure)
     - [Skeleton](#skeleton)
 2. [Design](#design)
-    - [Imagery](#imagery)
-    - [Color Scheme](#color-scheme)
     - [Typography](#typography)
     - [Icons](#icons)
-    - [Styling](#styling)
 3. [Features](#features)
     - [Features Implemented](#features-implemented)
     - [Features Left to Implement](#features-left-to-implement)
@@ -70,7 +67,7 @@ Minesweeper BOOOM! application follows the principal "simplicity is the key" and
 
 ## Skeleton
 - ### [Landing Page](assets/doc/wireframes/landing-page.png)
-    ![Landing page](assets/doc/wireframes/landing-page.png)
+    <img src="./assets/doc/wireframes/landing-page.png">
 - ### Wireframes
     - [Tutorial](assets/doc/wireframes/tutorial.png)
     - [Settings](assets/doc/wireframes/settings.png)
@@ -79,17 +76,11 @@ Minesweeper BOOOM! application follows the principal "simplicity is the key" and
     - [Win](assets/doc/wireframes/win.png)
     - [Lose](assets/doc/wireframes/lose.png)
 # Design
-
-## Imagery
-
-## Color Scheme
-
 ## Typography
-
+- No typography has been implemented. Base style has been extentively styled.
 ## Icons
-
-## Styling
-
+- Font Awesome has been used for icons.
+- Some of the icons has been made by creator (svg).
 # Features
 Please note, some of the features are still in progress, due to creator's slow progress. Creator is new to coding.
 
