@@ -24,7 +24,7 @@
 body {
     height: 100%; 
     overflow: hidden;
-    background-image: url(../img/background/AGqb1r.jpg);
+    background-image: url(../img/background/bg-img.jpg);
 }
 
 
@@ -180,13 +180,33 @@ body {
 }
 
 /*-----------------------------------------------------------------------------------------------------------------*/
-.board div {
+.board button {
     width: 40px;
     height: 40px;
-    border: 2px solid rgb(196, 93, 93);
+    border: 1px outset var(--border);
+    background-color: var(--modal-bg);
 }
 
+.board button:hover {
+    border: 2px outset var(--pink);
+}
 
+.revealed-square {
+    background-color: var(--modal-container-bg)!important;
+}
+.revealed-square:hover {
+    background-color: var(--modal-container-bg)!important;
+    border: 1px outset var(--border)!important;
+}
+
+.mine {
+    width: 30px;
+    height: 30px;
+
+}
+.bomb:active {
+    background-color: red!important;
+}
 
 /*** FOOTER ***/
 
@@ -194,7 +214,7 @@ body {
 
 footer {
     height: 60px !important;
-    margin-bottom: 15px;
+    margin-bottom: 0px!important;
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 5px !important;
@@ -349,7 +369,7 @@ footer button:hover {
 }
 
 /* SMALL VIEW QUERIES */
-@media (min-width: 580px) {
+@media (min-width: 585px) {
     .full-game-container {
         padding-left: 0;
         padding-right: 0;
@@ -467,15 +487,3 @@ body {
 /*------------------------------------------- Minesweeper ---*/
 
 
-.bomb {
-    background-color: salmon;
-}
-
-.revealed-square {
-    background-color: seagreen;
-}
-
-.mine {
-    width: 30px;
-    height: 30px;
-}

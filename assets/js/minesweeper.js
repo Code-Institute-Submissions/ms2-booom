@@ -71,9 +71,9 @@ function createBoard() {
     const shuffledSquares = shuffleSquares();
     addBoardGrid();
 
-    // iterate throughout the board, create div's for squares
+    // iterate throughout the board, create buttons's for squares
     for (let i = 0; i < widthTimesHeight; i++) {
-        const square = document.createElement('div');
+        const square = document.createElement('button');
         square.setAttribute('id', i);
         // assign shuffled values to squares
         square.classList.add(shuffledSquares[i]);
@@ -162,6 +162,7 @@ function numOfBombsSurroundingEmpty() {
     }
 }
 
+
 // Reveal squares with data value '0', using recursion
 function revealSquare(square) {
     let currentId = square.id;
@@ -210,7 +211,7 @@ function revealSquare(square) {
             const newId = parseInt(currentId) - 1 - width;
             newSquare(newId);
         }
-    }, 50);
+    }, 80);
 }
 
 // Add new ID to new Square
@@ -246,7 +247,7 @@ function click(square) {
 
         if (total != 0) { // square with val > 0
             square.classList.add('revealed-square');
-            square.innerHTML = total;
+            totalColor(total, square);
             return;
         }
 
@@ -256,6 +257,19 @@ function click(square) {
     }
 }
 
+//css for total
+
+function totalColor(total, square) {
+    if (total == 1) {
+        square.innerHTML = "<span style='color: blue; font-weight: 900; font-size: 20px'>" + total + "</span>";
+    } else if (total == 2) {
+        square.innerHTML = "<span style='color: green; font-weight: 900; font-size: 20px'>" + total + "</span>";
+    } else if (total == 3) {
+        square.innerHTML = "<span style='color: red; font-weight: 900; font-size: 20px'>" + total + "</span>";
+    } else {
+        square.innerHTML = "<span style='color: purple; font-weight: 900; font-size: 20px'>" + total + "</span>";
+    }
+}
 
 
 /***** FLAGS *****/
@@ -367,6 +381,7 @@ function openSettings() {
   document.getElementById("toggleMobileMenu").classList.remove("show");  
     settingsModal.classList.add('show');   
 }
+
 
 function chooseDifficulty(difficulty) { 
     switch (difficulty) {
