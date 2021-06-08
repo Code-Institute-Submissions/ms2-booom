@@ -3,8 +3,8 @@
 
 const board = document.getElementById('board');
 
-let width=8;
-let height=15;
+let width=12;
+let height=12;
 let widthTimesHeight;
 let bombCount=10;
 let flags = 0;
@@ -23,10 +23,23 @@ let squares = [];
 //https://stackoverflow.com/a/3540295
 
 function bodyLoaded() {
-    if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        width = 8;
-        height = 11;
+    if($(window).width() < 670) {
+        width = 12;
+        height = 12;
         bombCount=10;
+        if($(window).width() <500){
+            width=10;
+            height=10;
+        }
+        if($(window).width() <400){
+            width=8;
+            height=8;
+        }
+        if($(window).width() <330){
+            width=6;
+            height=8;
+        }
+        
     }   
     
     createBoard();
@@ -309,7 +322,8 @@ function isVictory() {
         if (bombFlag === bombCount && bombFlag === flags) {
             victory();
             flags = 0;
-            gameOver = true;           
+            gameOver = true; 
+            calculateScore();              
         }
     }
 }
@@ -354,13 +368,13 @@ function openSettings() {
 function chooseDifficulty(difficulty) { 
     switch (difficulty) {
         case 'easy':
-            width=5;
-            height=5;
+            width=8;
+            height=8;
             bombCount=5;
             break;
         case 'medium':
-            width=10;
-            height=10;
+            width=12;
+            height=12;
             bombCount=10;
             break;
         case 'hard':
@@ -480,38 +494,38 @@ function defaultSvg() {
 
 
 /* -------------------------- Timer -------------------------- */
-let firstClick = 0;
+// let firstClick = 0;
 
 
 // Function that counts passed time from start game 
-function startTimer() {
-    if (firstClick) {
+// function startTimer() {
+//     if (firstClick) {
 
 
-        let timer = document.getElementById('timer').innerHTML;
-        let separateTime = timer.split(":");
-        let min = separateTime[0];
-        let sec = separateTime[1];
+//         let timer = document.getElementById('timer').innerHTML;
+//         let separateTime = timer.split(":");
+//         let min = separateTime[0];
+//         let sec = separateTime[1];
 
-        if (sec == 59) {
-            min++;
-            sec = 0;
+//         if (sec == 59) {
+//             min++;
+//             sec = 0;
 
-            if (sec == 0)
-                sec = "0" + sec;
-            if (min < 10)
-                min = "0" + min;
-        } else {
-            sec++;
+//             if (sec == 0)
+//                 sec = "0" + sec;
+//             if (min < 10)
+//                 min = "0" + min;
+//         } else {
+//             sec++;
 
-            if (sec < 10)
-                sec = "0" + sec;
-        }
+//             if (sec < 10)
+//                 sec = "0" + sec;
+//         }
 
-        document.getElementById("timer").innerHTML = min + ":" + sec;
-        setTimeout(startTimer, 1000);
-    }
-}
+//         document.getElementById("timer").innerHTML = min + ":" + sec;
+//         setTimeout(startTimer, 1000);
+//     }
+// }
 /*function pause() {
     if (timerActive == false) {
         timerActive = true;
@@ -521,10 +535,10 @@ function startTimer() {
     }
 }*/
 
-function resetTimer() {
-    document.getElementById("timer").innerHTML = "00" + ":" + "00";
-    firstClick = 0;
-}
+// function resetTimer() {
+//     document.getElementById("timer").innerHTML = "00" + ":" + "00";
+//     firstClick = 0;
+// }
 
 
 

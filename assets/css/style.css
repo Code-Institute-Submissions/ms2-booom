@@ -1,12 +1,12 @@
 :root {
     --test-light: rgb(245, 179, 201);
     --test-dark: rgb(112, 14, 60);
-    --test-light-opacity: rgba(245, 179, 201,1);
+    --test-light-opacity: rgba(245, 179, 201, 1);
 }
 
 
-
 /* GENERAL STYLES */
+
 
 * {
     margin: 0;
@@ -14,13 +14,12 @@
 }
 
 body {
-    overflow: hidden;  
-    /* padding-top: 80px; */
-    /* scroll-padding-top: 80px;    
-    scroll-padding-bottom: 40px;  */
+    overflow: hidden;
 }
 
-/* Scrollbar */
+
+/* SCROLLBAR */
+
 
 /* https://www.digitalocean.com/community/tutorials/css-scrollbars */
 /* Works on Firefox */
@@ -28,38 +27,33 @@ body {
     scrollbar-width: thin;
     scrollbar-color:  var(--test-dark) var(--test-light);
   } */
-  
-  /* Works on Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
     width: 6px;
-  }
-  
-  *::-webkit-scrollbar-track {
+}
+
+*::-webkit-scrollbar-track {
     background: var(--test-light);
-  }
-  
-  *::-webkit-scrollbar-thumb {
+}
+
+*::-webkit-scrollbar-thumb {
     background-color: var(--test-dark);
     border-radius: 10px;
-  }
-
-
-
-/* .wrapper {
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    min-width: 100%;
-    bottom: 40px;
-
-} */
+}
 
 
 
 /* HEADER */
 
 
-/*---------------------------------------------------------------------------------bg col*/
+#toggleMobileMenu {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+
+/*-------------------------------------------------------------------------------------------------------------*/
 .navbar-layout {
     padding-left: 15px;
     padding-right: 15px;
@@ -80,24 +74,24 @@ body {
 }
 
 .container {
-    padding: 0 !important;  
+    padding: 0 !important;
     height: calc(100% - 40px - 45px);
-   max-height: calc(100% - 40px - 45px);   
-   overflow:hidden;
-  }
-  
+    max-height: calc(100% - 40px - 45px);
+    overflow: hidden;
+}
+
 
 
 /* REFRESH GAME/WIN/LOSE MODAL */
 
 
-.ms-items {
+.game-controls {
     padding-left: 15px;
-    padding-right: 15px; 
-    /* padding-bottom: 20px; */
+    padding-right: 15px;
+    padding-top: 15px;
 }
 
-/*----------------------------------------------------------------------bg-col*/
+/*------------------------------------------------------------------------------------------------------*/
 .start-again-button {
     display: flex;
     margin-left: auto;
@@ -119,47 +113,46 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 30px;
+    padding-right: 10px
 }
 
-.flag-btn {
+#flag-count {
+    padding-right: 10px;
+    ;
+}
+
+.flag-btn-size {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 20px;
-}
-
-.flag-btn-size {
     width: 35px;
     height: 35px;
 }
 
 
-
 /* MINESWEEPER BOARD */
-.wrap-game {
-  
-}
+
+
 .game-container {
-    /* padding-bottom: 50px;   */
-    /* height:80vh; */
-    height:80vh;
-    /* overflow:scroll; */
+    height: 80vh;
 }
 
-.game-container .row:nth-last-of-type(){
-    height:80vh;
-    overflow:scroll;
+.game-container .row:nth-last-of-type() {
+    height: 80vh;
+    overflow: scroll;
 }
 
 .minesweeper {
-    display: flex; 
+    display: flex;
+    height: 70vh !important;
+    min-height: 70vh !important;
+    overflow: scroll !important;
+    margin: 20px auto 0 auto;
+    padding: 0 !important;
     align-items: center;
-    justify-content: center;    
-    height:70vh!important;
-    min-height: 70vh!important;
-    overflow:scroll!important;  
-    margin-top:20px;
-    scroll-padding-top:20px ;
+    justify-content: center;
+    /*scroll-padding-top:20px;------------------------------------------------------------------------------------*/
 }
 
 .board {
@@ -167,9 +160,7 @@ body {
     flex-wrap: wrap;
 }
 
-
-
-/*-----------------------------------------------------------------------------border col*/
+/*-----------------------------------------------------------------------------------------------------------------*/
 .board div {
     width: 40px;
     height: 40px;
@@ -181,129 +172,126 @@ body {
 /* FOOTER */
 
 
-
+/*---------------------------------------------------------------------------------------------------------------*/
 footer {
-    height: 40px!important;
-    padding-left: 10px!important;
-    padding-right: 10px!important;
-    padding-top: 5px!important;
-    background-color: var(--test-light); 
-  
-    /* align-items: center;
-    justify-items: center; */  
-    opacity: 0.5;
-  }
-/* .footer-styles{
-    display: flex;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    height: 40px;
+    height: 40px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
     background-color: var(--test-light);
     opacity: 0.5;
-} */
-
-footer a,
-footer i{
-    color:var(--test-dark);
-    /* font-size: 24px;
-    margin:2px 8px; */
-  }
-  
-  footer a:active,
-  footer a:visited{
-    color:var(--test-dark);
-  }
-  
-  footer a:hover{
-    color:var(--test-dark);
-  }
-
-/* .align-footer {
-    display: flex;
-    padding-bottom: 20px;
-    height: 40px;
-    align-items: center;
-    justify-content: center;
-} */
-
-/* .connect-btn {
-    padding-left: 5px;
-    padding-right: 5px;
+    margin-bottom: 15px;
 }
 
-.social-links {
-    padding-left: 7px;
+/*------------------------------------------------------------------------------------------------------------*/
+footer a,
+footer i {
+    color: var(--test-dark);
     font-size: 20px;
 }
 
-.volume-icon {
+/*------------------------------------------------------------------------------------------------------------*/
+footer a:active,
+footer a:visited {
+    color: var(--test-dark);
+}
+
+/*------------------------------------------------------------------------------------------------------------*/
+footer a:hover {
+    color: var(--test-dark);
+}
+
+.connect-btn {
     padding-left: 5px;
-    font-size: 30px;
-} */
+    padding-right: 5px;
+}
 
 
 
 /* MEDIA QUERIES */
 
-        /* MOBILE PHONE VIEW QUERIES */
 
 
-        @media (max-width: 540px ), (min-height: 800px ) {
-            .wrapper {
-                padding-top: 25px;
-            }
-            /* .minesweeper {
-                padding-bottom: 45px;
-            } */
-            .footer-styles {
-                margin-bottom: 0px;
-            }
-        }
+/*LARGE DEVICES */
+@media (min-width: 990px) {
+    header {
+        margin-left: 30vw;
+        margin-right: 30vw;
+    }
+}
 
-        /* se, ip6,7,8 etc*/
-       /* @media (max-width: 360px) {
-            .board {
-                margin-right: 0;
-                margin-left: 0;
-            }
-            .wrapper {
-                overflow-y: scroll;
-            }
-            .board div {
-                margin-right: 0;
-                margin-left: 0;
-                width: 40px;
-                height: 40px;
-            }
-        }*/
+/* EXTRA LARGE DEVICES */
+@media (min-width: 1200px) {
+    header {
+        margin-left: 30vw;
+        margin-right: 30vw;
+    }
+}
+
+/* MEDIUM DEVICES */
+@media (min-width: 760px) {
+
+    .game-controls {
+        margin-top: 15px;
+        margin-left: 30vw;
+        margin-right: 30vw;
+    }
+
+    footer i {
+        font-size: 40px;
+    }
+}
+
+/* SMALL VIEW QUERIES */
+@media (min-width: 576px) {
+    .full-game-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    header {
+        margin-top: 20px;
+        margin-left: 20vw;
+        margin-right: 20vw;
+    }
+
+    .logo {
+        height: 75px;
+        width: 200px;
+    }
+
+    .settings-icon {
+        font-size: 75px;
+    }
+
+    .game-controls {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    footer {
+        margin-bottom: 40px;
+    }
+
+    footer i {
+        font-size: 30px;
+    }
+
+    .connect-btn {
+        margin-left: 75px;
+    }
+
+    .social-links a:last-child {
+        margin-right: 75px;
+    }
+}
 
 
-
-        /* DESKTOP VIEW QUERIES */
-
-/*
-        @media (min-width: 960px ) {
-            .navbar-layout {
-                margin-left: 20vw;
-                margin-right: 20vw;
-                margin-top: 30px;
-            }
-            
-            .logo {
-                width: 300px;
-                height: 100px;
-            }
-                       
-            .settings-icon {
-                font-size: 50px;
-            }
-        }
-*/
 /*------------------------------------------- Mwawefoqddd ---*/
 body {
     background-color: var(--test-light);
 }
+
 .light {
     background-color: var(--test-light);
 }
@@ -341,10 +329,12 @@ body {
     opacity: 0;
 
 }
+
 .game-modal-container.show {
     pointer-events: auto;
     opacity: 1;
 }
+
 .game-modal {
     width: 300px;
     height: 300px;
@@ -353,13 +343,13 @@ body {
     visibility: visible;
     display: block;
     position: relative;
-    top:25%;
-    bottom: 0;    
+    top: 25%;
+    bottom: 0;
     margin: auto;
-}    
+}
 
-#settings-modal{
-    visibility:hidden;
+#settings-modal {
+    visibility: hidden;
 }
 
 .connect-modal-container {
@@ -373,10 +363,12 @@ body {
     opacity: 0;
 
 }
+
 .connect-modal-container.show {
     pointer-events: auto;
     opacity: 1;
 }
+
 .connect-modal {
     width: 300px;
     height: 300px;
@@ -385,10 +377,11 @@ body {
     visibility: visible;
     display: block;
     position: relative;
-    top:25%;
-    bottom: 0;    
+    top: 25%;
+    bottom: 0;
     margin: auto;
-}    
+}
+
 /*------------------------------------------- Minesweeper ---*/
 
 

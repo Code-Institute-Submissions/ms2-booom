@@ -51,7 +51,7 @@
                     </li>
                     <li>
                         <a class="nav-link" href="#">
-                            <button type="button">Leaderboard</button>
+                            <button type="button" onclick="openLeaderboard()">Leaderboard</button>
                         </a>
                     </li>
                 </ul>
@@ -107,17 +107,33 @@
         </div>
     </div>
 
-    <div class="container">
+    <!-- Leaderboar modal -->
+    <div id="leaderboard-modal" class="game-modal-container" onclick="closeModal()">
+        <div class="game-modal">
+            <h4>Leaderboard</h4>
+            <table>
+                <thead>
+                    <th>
+                    <td>Score</td>
+                    <td>Difficulty</td>
+                    <td>Date</td>
+                    </th>
+                </thead>
+                <tbody id="table-leaderboard-body"></tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+
+    <div class="container-fluid full-game-container">
         <!-- Minesweeper -->
         <section class="game-container">
 
-            <div class="row ms-items">
-                <div class="col-2 flag-count">
+            <div class="row game-controls">
+                <div class="col-4 flag-count">
                     <div id="flag-count">
                         00
                     </div>
-                </div>
-                <div class="col-2 flag-btn">
                     <button id="remap-click" class="flag-btn-size" onclick="remapClick()">
                         <i class="far fa-flag"></i>
                     </button>
@@ -175,8 +191,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col minesweeper">
+            <div class="row minesweeper-row">
+                <div class="col minesweeper no-gutters">
                     <div id="board" class="board">
                     </div>
                 </div>
@@ -187,24 +203,6 @@
 
     <!-- Footer -->
     <footer class="fixed-bottom d-inline-flex justify-content-evenly w-100 ">
-
-        <!-- <div class="row">
-                    <div class="col-5 align-footer">
-                        <a href="#">
-                            <button class="connect-btn" type="button"><i class="far fa-envelope-open"></i>
-                                Connect
-                            </button>
-                        </a>
-                    </div>
-                    <div class="col-2 align-footer">
-                        <i class="fas fa-volume-mute volume-icon"></i>
-                    </div>
-                    <div class="col-5 align-footer">
-                        <a href="https://github.com/almost-good" target="_blank" rel="noopener"><i class="fab fa-github social-links"></i></a>
-                        <a href="https://www.linkedin.com/in/marja-marinic-6968501a6/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in social-links"></i></a>
-                        <a href="https://instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram social-links"></i></a>
-                    </div>
-                </div> -->
         <a href="#" class="mr-auto flex-fill">
             <button class="connect-btn" type="button" onclick="openConnectModal()">
                 <i class="far fa-envelope-open"></i>
@@ -212,7 +210,7 @@
             </button>
         </a>
         <i class="fas fa-volume-mute volume-icon p-2 flex-fill"></i>
-        <div class=" p-2 justify-content-end">
+        <div class=" p-2 justify-content-end social-links">
             <a href="https://github.com/almost-good" target="_blank" rel="noopener"><i
                     class="fab fa-github social-links"></i></a>
             <a href="https://www.linkedin.com/in/marja-marinic-6968501a6/" target="_blank" rel="noopener"><i
@@ -220,7 +218,6 @@
             <a href="https://instagram.com/" target="_blank" rel="noopener"><i
                     class="fab fa-instagram social-links"></i></a>
         </div>
-
     </footer>
 
 
@@ -233,6 +230,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- Custom JS Script -->
+    <script src="assets/js/leaderboard.js" type="text/javascript"></script>
+    <script src="assets/js/timer.js" type="text/javascript"></script>
     <script src="assets/js/minesweeper.js" type="text/javascript"></script>
 </body>
 
