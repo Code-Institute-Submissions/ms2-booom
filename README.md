@@ -5,7 +5,7 @@ Minesweeper BOOOM! website focuses on recreating classic Minesweeper game with m
 Minesweeper - a game that consists of "mine sweeping" - is one of early games introduced to Windows, and, in fact was part of the standard Windows 3.1 edition. 
 Search for mines using neighbouring fields as indicators where the mines are, find them all and win the game!
 
-![Website Responsiveness](https://github.com/almost-good/ms2-booom/blob/main/assets/doc/img/responsive.PNG)
+![Responsive](assets/doc/img/responsive.PNG)
 
 # Table of content: 
 <details>
