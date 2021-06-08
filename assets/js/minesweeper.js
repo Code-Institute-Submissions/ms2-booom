@@ -37,7 +37,7 @@ function bodyLoaded() {
         }
         if($(window).width() <330){
             width=6;
-            height=8;
+            height=6;
         }
         
     }   
@@ -101,6 +101,7 @@ function createBoard() {
     numOfBombsSurroundingEmpty();
 
     countFlags = bombCount;
+    flagCounter();
 }
 
 // Add dynamic board grid
@@ -317,10 +318,11 @@ function isVictory() {
         if (squares[i].classList.contains('flag') && squares[i].classList.contains('bomb')) {
             bombFlag++;
         }
-
+        console.log('check   ', bombFlag);
         // at every point also check if flag num is equal num of matched bombs with flags 
         if (bombFlag === bombCount && bombFlag === flags) {
             victory();
+            remapClick();
             flags = 0;
             gameOver = true; 
             calculateScore();              
@@ -331,7 +333,8 @@ function isVictory() {
 // Displays Game Over
 function isDefeat() {
     gameOver = true;
-
+    flags = 0;
+    remapClick();
     displayBombs();
     defeat();
 }
@@ -428,6 +431,7 @@ function startAgain() {
             gameModalContainer.classList.add('show');
 
             modalHtml.innerHTML = `
+                <i class="fas fa-meh-rolling-eyes"></i>
                 <h2>Bomb again?</h2>
                 <p>All progress will be lost!</p>
                 `;
@@ -447,6 +451,8 @@ function refreshGame() {
     defaultSvg();
     
     createBoard();
+
+    flags = 0;
 }
 
 // If this button is clicked, proceed to refresh
@@ -463,6 +469,7 @@ function closeModal() {
 // Function for Defeat message
 function defeat() {
     modalHtml.innerHTML = `
+    <i class="fas fa-grin-squint-tears"></i>
     <h2>Defeat! ..Noob alert!</h2>
     <h4>Would you like to BOMB again?</h4>
     `;
@@ -473,6 +480,7 @@ function defeat() {
 // Function for Victory message
 function victory() {
     modalHtml.innerHTML = `
+    <i class="fas fa-grin-stars"></i>
     <h2>Victory!</h2>
     <h4>Would you like to BOMB again?</h4>
     `;
@@ -567,8 +575,13 @@ let remapFlagActive = false;
 // Function for remapping click to flag on flag button click event
 function remapClick() {
     if (!remapFlagActive) {
+        document.getElementById("remap-click").innerHTML =`
+        <i class="far fa-flag"></i>`
+        ;
         remapFlagActive = true;
     } else {
+        document.getElementById("remap-click").innerHTML =`
+            <i class="fas fa-bomb"></i>`;
         remapFlagActive = false;
     }
 }

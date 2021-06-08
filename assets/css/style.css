@@ -2,10 +2,17 @@
     --test-light: rgb(245, 179, 201);
     --test-dark: rgb(112, 14, 60);
     --test-light-opacity: rgba(245, 179, 201, 1);
+    --modal-container-bg: #2a373f99;
+    --modal-bg: #77a28be8;
+    --pink: #a00d95;
+    --light-pink: #da3ccf;
+    --purple: #520254;
+    --start-new-game-btn: #2a373ffa;
+    --border: #a8a7a59f;
 }
 
 
-/* GENERAL STYLES */
+/*** GENERAL STYLES ***/
 
 
 * {
@@ -16,10 +23,11 @@
 body {
     height: 100%; 
     overflow: hidden;
+    background-image: url(../img/background/AGqb1r.jpg);
 }
 
 
-/* HEADER */
+/*** HEADER ***/
 
 
 #toggleMobileMenu {
@@ -48,7 +56,7 @@ body {
     font-size: 35px;
 }
 
-/* REFRESH GAME/WIN/LOSE MODAL */
+/* GAME CONTROLS */
 
 
 .game-controls {
@@ -63,12 +71,14 @@ body {
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
-    width: 60px;
-    height: 65px;
-    background-color: var(--test-light);
+    width: 80px;
+    height: 75px;
+    background-color: var(--start-new-game-btn);
+    border-radius: 50%;
 }
 
 .start-again-svg {
+    margin-top: 7px;
     width: 40px;
     height: 55px;
 }
@@ -79,12 +89,17 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 30px;
-    padding-right: 10px
+    padding-right: 10px;
+    background-color: var(--start-new-game-btn);
+    border: 1px outset var(--border);
+    border-radius: 5px;
+    color: var(--purple);
+    font-weight: 900;
+    -webkit-text-stroke: 2px var(--light-pink);
 }
 
 #flag-count {
     padding-right: 10px;
-    ;
 }
 
 .flag-btn-size {
@@ -92,12 +107,13 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 20px;
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 40px;
+    background-color: var(--start-new-game-btn);
+    border-radius: 50%;
 }
 
-
-/* MINESWEEPER BOARD */
+/*** MINESWEEPER BOARD ***/
 
 
 .game-container {
@@ -107,18 +123,17 @@ body {
 .game-container .row:nth-last-of-type() {
     height: 80vh;
     overflow-x: hidden!important;
+    overflow-y: hidden!important;
 }
 
 .minesweeper {
     display: flex;
     height: 70vh !important;
     min-height: 70vh !important;
-    overflow: scroll !important;
     margin: 20px auto 0 auto;
     padding: 0 !important;
     align-items: center;
     justify-content: center;
-    /*scroll-padding-top:20px;------------------------------------------------------------------------------------*/
 }
 
 .board {
@@ -135,7 +150,7 @@ body {
 
 
 
-/* FOOTER */
+/*** FOOTER ***/
 
 
 /*---------------------------------------------------------------------------------------------------------------*/
@@ -176,9 +191,86 @@ footer a:hover {
     padding-right: 5px;
 }
 
+/*** MODALS ***/
 
 
-/* MEDIA QUERIES */
+
+/* START AGAIN/WIN/LOSE MODAL */
+
+
+.game-modal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--modal-container-bg);
+    pointer-events: none;
+    opacity: 0;
+
+}
+
+.game-modal {
+    display: block;
+    position: relative;
+    z-index: 2000;
+    visibility: visible;
+    top: 25%;
+    bottom: 0;
+    margin: auto;
+    width: 300px;
+    height: 350px;
+    background-color: var(--modal-bg);
+    border: 5px groove var(--border);
+    border-radius: 2px;
+}
+
+.game-modal > div {
+    padding-top: 40px;
+    text-align: center;
+}
+
+.game-modal i {
+    color: var(--pink);
+    font-size: 70px;
+}
+
+.game-modal h2 {
+    font-size: 40px;
+}
+
+.game-modal p {
+    font-size: 20px;
+}
+
+.game-modal button {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-top: 20px;
+    width: 100px;
+    background-color: var(--start-new-game-btn);
+    border: 2px groove var(--border);
+    color: var(--light-pink);
+    font-weight: 700;
+}
+
+.game-modal button:first-of-type {
+    margin-left: 45px;
+}
+
+.game-modal button:last-of-type {
+    margin-left: 10px;
+    margin-right: 30px;
+}
+
+.game-modal-container.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+
+
+/*** MEDIA QUERIES ***/
 
 
 
@@ -288,35 +380,7 @@ body {
 }*/
 /*------------------------------------------- Modal ---*/
 
-.game-modal-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(144, 144, 144, 0.5);
-    pointer-events: none;
-    opacity: 0;
 
-}
-
-.game-modal-container.show {
-    pointer-events: auto;
-    opacity: 1;
-}
-
-.game-modal {
-    width: 300px;
-    height: 300px;
-    z-index: 2000;
-    background-color: red;
-    visibility: visible;
-    display: block;
-    position: relative;
-    top: 25%;
-    bottom: 0;
-    margin: auto;
-}
 
 #settings-modal {
     visibility: hidden;
